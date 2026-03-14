@@ -5,13 +5,16 @@ import { resolve } from 'node:path'
 import { writeFile, access } from 'node:fs/promises'
 import { createInterface } from 'node:readline/promises'
 import { stdin, stdout } from 'node:process'
-import { scan } from './scanner/index.js'
-import { loadBaseline, saveBaseline, computeDiff } from './diff/index.js'
-import { formatGitHubPRComment } from './reporters/github-pr.js'
-import { formatJsonReport } from './reporters/json.js'
-import { formatSarifReport } from './reporters/sarif.js'
-import { formatMarkdownReport } from './reporters/markdown.js'
-import type { FailOn, OutputFormat, ScanResult } from './types.js'
+import { scan } from './scanner/index'
+import { loadBaseline, saveBaseline, computeDiff } from './diff/index'
+import { formatGitHubPRComment } from './reporters/github-pr'
+import { formatJsonReport } from './reporters/json'
+import { formatSarifReport } from './reporters/sarif'
+import { formatMarkdownReport } from './reporters/markdown'
+import { generatePdf } from './reporters/pdf'
+import { scaffoldDocumentation } from './scaffold/index'
+import { runDoctor } from './doctor/index'
+import type { FailOn, OutputFormat, ScanResult } from './types'
 
 function formatOutput(
   result: ScanResult,
@@ -229,13 +232,12 @@ const reportCommand = defineCommand({
     },
     format: {
       type: 'string',
-      description: 'Report format (markdown, json)',
+      description: 'Report format (markdown, json, pdf)',
       default: 'markdown',
     },
     out: {
       type: 'string',
       description: 'Output file path',
-      default: 'COMPLIANCE_REPORT.md',
     },
   },
   async run({ args }) {
@@ -251,10 +253,17 @@ const reportCommand = defineCommand({
       verbose: false,
     })
 
-    const output = formatOutput(result, format)
-    const outPath = resolve(args.out)
-    await writeFile(outPath, output, 'utf-8')
-    console.log(`Compliance report written to ${outPath}`)
+    const defaultOut = format === 'pdf' ? 'COMPLIANCE_REPORT.pdf' : 'COMPLIANCE_REPORT.md'
+    const outPath = resolve(args.out ?? defaultOut)
+
+    if (format === 'pdf') {
+      await generatePdf(result, outPath)
+      console.log(`PDF compliance report written to ${outPath}`)
+    } else {
+      const output = formatOutput(result, format)
+      await writeFile(outPath, output, 'utf-8')
+      console.log(`Compliance report written to ${outPath}`)
+    }
   },
 })
 
@@ -497,15 +506,110 @@ systems:
 `
 }
 
+const scaffoldCommand = defineCommand({
+  meta: {
+    name: 'scaffold',
+    description: 'Generate template documentation files for all declared systems',
+  },
+  args: {
+    path: {
+      type: 'string',
+      description: 'Path to project root',
+      default: '.',
+    },
+    config: {
+      type: 'string',
+      description: 'Path to .systima.yml config',
+    },
+    overwrite: {
+      type: 'boolean',
+      description: 'Overwrite existing documentation files',
+      default: false,
+    },
+  },
+  async run({ args }) {
+    const scanPath = resolve(args.path)
+    const result = await scaffoldDocumentation(scanPath, args.config, args.overwrite)
+
+    if (result.errors.length > 0) {
+      for (const err of result.errors) {
+        console.error(`Error: ${err}`)
+      }
+      process.exit(1)
+    }
+
+    if (result.created.length > 0) {
+      console.log(`Created ${result.created.length} documentation file(s):`)
+      for (const path of result.created) {
+        console.log(`  + ${path}`)
+      }
+    }
+
+    if (result.skipped.length > 0) {
+      console.log(`Skipped ${result.skipped.length} existing file(s):`)
+      for (const path of result.skipped) {
+        console.log(`  - ${path} (already exists; use --overwrite to replace)`)
+      }
+    }
+
+    if (result.created.length === 0 && result.skipped.length === 0) {
+      console.log('No documentation paths declared in .systima.yml. Add documentation paths to your system declarations first.')
+    }
+  },
+})
+
+const doctorCommand = defineCommand({
+  meta: {
+    name: 'doctor',
+    description: 'Validate .systima.yml configuration without running a full scan',
+  },
+  args: {
+    path: {
+      type: 'string',
+      description: 'Path to project root',
+      default: '.',
+    },
+    config: {
+      type: 'string',
+      description: 'Path to .systima.yml config',
+    },
+  },
+  async run({ args }) {
+    const scanPath = resolve(args.path)
+    const result = await runDoctor(scanPath, args.config)
+
+    const statusIcon = (s: string): string =>
+      s === 'pass' ? '  PASS' : s === 'fail' ? '  FAIL' : '  WARN'
+
+    console.log('\nSystema Comply Doctor\n')
+    for (const check of result.checks) {
+      console.log(`${statusIcon(check.status)}  ${check.name}`)
+      console.log(`        ${check.detail}`)
+    }
+
+    const passes = result.checks.filter((c) => c.status === 'pass').length
+    const failures = result.checks.filter((c) => c.status === 'fail').length
+    const warnings = result.checks.filter((c) => c.status === 'warning').length
+
+    console.log(`\n${passes} passed, ${failures} failed, ${warnings} warnings`)
+
+    if (!result.healthy) {
+      process.exit(1)
+    }
+  },
+})
+
 const main = defineCommand({
   meta: {
     name: 'comply',
-    version: '0.1.0',
+    version: '0.2.0',
     description: 'EU AI Act compliance scanning for CI/CD pipelines',
   },
   subCommands: {
     scan: scanCommand,
     init: initCommand,
+    scaffold: scaffoldCommand,
+    doctor: doctorCommand,
     baseline: baselineCommand,
     diff: diffCommand,
     report: reportCommand,

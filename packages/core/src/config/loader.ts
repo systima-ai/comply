@@ -1,13 +1,13 @@
 import { readFile } from 'node:fs/promises'
 import { resolve, dirname } from 'node:path'
 import { parse as parseYaml } from 'yaml'
-import { complyConfigSchema, type RawComplyConfig } from './schema.js'
+import { complyConfigSchema, type RawComplyConfig } from './schema'
 import type {
   ComplyConfig,
   SystemDeclaration,
   OrganisationConfig,
   SystemDocumentation,
-} from '../types.js'
+} from '../types'
 
 export interface ConfigLoadResult {
   config: ComplyConfig | null

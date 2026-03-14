@@ -1,4 +1,4 @@
-import type { AnnexIIICategory, DomainIndicator } from '../types.js'
+import type { AnnexIIICategory, DomainIndicator } from '../types'
 
 const DOMAIN_INDICATORS: DomainIndicator[] = [
   {

@@ -1,5 +1,5 @@
-import type { ScanResult, ComplianceDiff } from '../types.js'
-import { formatGitHubPRComment } from './github-pr.js'
+import type { ScanResult, ComplianceDiff } from '../types'
+import { formatGitHubPRComment } from './github-pr'
 
 export function formatGitLabMRNote(
   result: ScanResult,

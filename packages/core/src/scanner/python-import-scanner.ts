@@ -1,8 +1,8 @@
 import { readFile } from 'node:fs/promises'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { loadFrameworks, findFrameworkByImport } from '../knowledge/frameworks.js'
-import type { AiUsageDetection, ClassifiedFile } from '../types.js'
+import { loadFrameworks, findFrameworkByImport } from '../knowledge/frameworks'
+import type { AiUsageDetection, ClassifiedFile } from '../types'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 

@@ -4,7 +4,7 @@ import type {
   ClassifiedFile,
   ComplianceResult,
   SystemDeclaration,
-} from '../../types.js'
+} from '../../types'
 
 const LOGGING_PACKAGES_JS = [
   '@systima/aiact-audit-log',
@@ -74,6 +74,7 @@ export async function checkArt12Logging(
       status: 'warning',
       title: 'Structured logging detected but not Article 12 compliant',
       detail: 'A structured logging library was detected, but it is not specifically designed for Article 12 compliance. Article 12 requires: unique decision IDs, model version tracking, parameter capture, input/output recording, tool call logging, human intervention tracking, and tamper-evident storage. Consider adopting @systima/aiact-audit-log for compliant logging.',
+      remediation: 'Install @systima/aiact-audit-log for Article 12 compliant logging: npm install @systima/aiact-audit-log. See https://github.com/systima-ai/aiact-audit-log for setup instructions including AI SDK middleware registration.',
       referenceUrl: 'https://artificialintelligenceact.eu/article/12/',
       phase: 1,
     })
@@ -82,10 +83,11 @@ export async function checkArt12Logging(
 
   results.push({
     articleId: 'art12',
-    status: 'fail',
-    title: 'No logging infrastructure detected',
-    detail: 'No structured logging or audit logging package detected for this high-risk system. Article 12 requires automatic logging capabilities that record events relevant to identifying risk situations. This is the highest-retrofit-cost obligation.',
-    referenceUrl: 'https://artificialintelligenceact.eu/article/12/',
+      status: 'fail',
+      title: 'No logging infrastructure detected',
+      detail: 'No structured logging or audit logging package detected for this high-risk system. Article 12 requires automatic logging capabilities that record events relevant to identifying risk situations. This is the highest-retrofit-cost obligation.',
+      remediation: 'Install @systima/aiact-audit-log: npm install @systima/aiact-audit-log. This provides Article 12 compliant structured, tamper-evident audit logging with AI SDK middleware, decision ID tracking, and S3-compatible storage. See https://github.com/systima-ai/aiact-audit-log',
+      referenceUrl: 'https://artificialintelligenceact.eu/article/12/',
     phase: 1,
   })
 

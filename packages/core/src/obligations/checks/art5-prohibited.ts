@@ -1,4 +1,4 @@
-import type { AiUsageDetection, ComplianceResult } from '../../types.js'
+import type { AiUsageDetection, ComplianceResult } from '../../types'
 
 const BIOMETRIC_FRAMEWORK_IDS = new Set([
   'face-recognition',

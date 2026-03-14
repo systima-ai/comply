@@ -1,14 +1,14 @@
-import { walkFiles } from './file-walker.js'
-import { scanTypeScriptImports } from './import-scanner.js'
-import { scanPythonImports } from './python-import-scanner.js'
-import { scanDependencies, isDependencyManifest } from './dependency-scanner.js'
-import { scanConfigFile } from './config-scanner.js'
-import { checkDocumentation } from './doc-scanner.js'
-import { loadConfig } from '../config/loader.js'
-import { classifySystem, detectUndeclaredSystems } from '../classifier/index.js'
-import { traceCallChains } from '../tracer/index.js'
-import { detectDomainFromFilePaths, suggestAnnexIIICategory } from '../classifier/domain-detector.js'
-import { runObligationChecks } from '../obligations/index.js'
+import { walkFiles } from './file-walker'
+import { scanTypeScriptImports } from './import-scanner'
+import { scanPythonImports } from './python-import-scanner'
+import { scanDependencies, isDependencyManifest } from './dependency-scanner'
+import { scanConfigFile } from './config-scanner'
+import { checkDocumentation } from './doc-scanner'
+import { loadConfig } from '../config/loader'
+import { classifySystem, detectUndeclaredSystems } from '../classifier/index'
+import { traceCallChains } from '../tracer/index'
+import { detectDomainFromFilePaths, suggestAnnexIIICategory } from '../classifier/domain-detector'
+import { runObligationChecks } from '../obligations/index'
 import type {
   AiUsageDetection,
   CallChainTrace,
@@ -21,7 +21,7 @@ import type {
   SystemScanResult,
   FindingSeverity,
   RiskTier,
-} from '../types.js'
+} from '../types'
 import picomatch from 'picomatch'
 
 function matchesScope(
@@ -210,18 +210,29 @@ export async function scan(options: ScanOptions): Promise<ScanResult> {
         }
       }
 
+      const seenSinks = new Map<string, { count: number; sink: typeof callChainTraces[number]['sinks'][number]; frameworkId: string }>()
       for (const trace of callChainTraces) {
         for (const sink of trace.sinks) {
-          classificationResult.mismatches.push({
-            systemId: systemDecl.id,
-            declaredRiskLevel: systemDecl.classification.riskLevel,
-            suggestedRiskLevel: sink.suggestedRiskLevel ?? 'limited',
-            reason: `Call-chain analysis: ${sink.description} at ${sink.filePath}:${sink.lineNumber}`,
-            frameworkId: trace.sourceDetection.frameworkId,
-            suggestedAnnexIiiCategory: sink.suggestedAnnexIiiCategory,
-            filePaths: [sink.filePath],
-          })
+          const key = `${sink.filePath}:${sink.lineNumber}:${sink.type}`
+          const existing = seenSinks.get(key)
+          if (existing) {
+            existing.count++
+          } else {
+            seenSinks.set(key, { count: 1, sink, frameworkId: trace.sourceDetection.frameworkId })
+          }
         }
+      }
+
+      for (const [, { sink, frameworkId }] of seenSinks) {
+        classificationResult.mismatches.push({
+          systemId: systemDecl.id,
+          declaredRiskLevel: systemDecl.classification.riskLevel,
+          suggestedRiskLevel: sink.suggestedRiskLevel ?? 'limited',
+          reason: `Call-chain analysis: ${sink.description} at ${sink.filePath}:${sink.lineNumber}`,
+          frameworkId,
+          suggestedAnnexIiiCategory: sink.suggestedAnnexIiiCategory,
+          filePaths: [sink.filePath],
+        })
       }
 
       const docResults = await checkDocumentation(systemDecl.documentation)
@@ -259,6 +270,7 @@ export async function scan(options: ScanOptions): Promise<ScanResult> {
             systemId: systemDecl.id,
             title: result.title,
             message: result.detail,
+            suggestion: result.remediation,
             filePath: result.filePaths?.[0],
             referenceUrl: result.referenceUrl,
           })
@@ -270,6 +282,7 @@ export async function scan(options: ScanOptions): Promise<ScanResult> {
             systemId: systemDecl.id,
             title: result.title,
             message: result.detail,
+            suggestion: result.remediation,
             filePath: result.filePaths?.[0],
             referenceUrl: result.referenceUrl,
           })

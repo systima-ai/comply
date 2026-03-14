@@ -14,7 +14,7 @@ export type DetectionConfidence = 'high' | 'medium' | 'low'
 
 export type ScanMode = 'full' | 'diff'
 
-export type OutputFormat = 'comment' | 'json' | 'sarif' | 'markdown' | 'text'
+export type OutputFormat = 'comment' | 'json' | 'sarif' | 'markdown' | 'text' | 'pdf'
 
 export type FailOn = 'none' | 'warning' | 'fail' | 'critical'
 
@@ -171,6 +171,7 @@ export interface ComplianceResult {
   status: ComplianceStatus
   title: string
   detail: string
+  remediation?: string
   filePaths?: string[]
   lineNumbers?: number[]
   referenceUrl: string

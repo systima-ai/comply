@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises'
 import { parse as parseToml } from 'smol-toml'
-import { loadFrameworks, findFrameworkByPackage } from '../knowledge/frameworks.js'
-import type { AiUsageDetection, ClassifiedFile } from '../types.js'
+import { loadFrameworks, findFrameworkByPackage } from '../knowledge/frameworks'
+import type { AiUsageDetection, ClassifiedFile } from '../types'
 
 async function scanPackageJson(file: ClassifiedFile): Promise<AiUsageDetection[]> {
   const detections: AiUsageDetection[] = []

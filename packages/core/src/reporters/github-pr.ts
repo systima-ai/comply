@@ -1,4 +1,4 @@
-import type { ScanResult, SystemScanResult, ComplianceDiff } from '../types.js'
+import type { ScanResult, SystemScanResult, ComplianceDiff } from '../types'
 
 const STATUS_ICONS: Record<string, string> = {
   pass: '✅',
@@ -56,6 +56,14 @@ function formatFindings(result: ScanResult): string {
     }
     if (finding.referenceUrl) {
       lines.push(`> 📋 [${finding.articleId?.replace('art', 'Article ') ?? 'Reference'}](${finding.referenceUrl})`)
+    }
+    if (finding.suggestion) {
+      lines.push('')
+      lines.push(`<details><summary>💡 Remediation</summary>`)
+      lines.push('')
+      lines.push(finding.suggestion)
+      lines.push('')
+      lines.push(`</details>`)
     }
     lines.push('')
   }
