@@ -1,6 +1,6 @@
 {
   "name": "@systima/comply",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "EU AI Act compliance scanning for CI/CD pipelines",
   "license": "Apache-2.0",
   "author": "Systima Ltd. <hello@systima.ai>",

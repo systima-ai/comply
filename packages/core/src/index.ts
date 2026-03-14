@@ -23,6 +23,8 @@ export { scaffoldDocumentation } from './scaffold/index'
 export { runDoctor } from './doctor/index'
 export { checkArt11AiactDocs } from './obligations/checks/art11-aiact-docs'
 
+export { REGULATED_DOMAINS } from './types'
+
 export type {
   AiUsageDetection,
   AnnexIIICategory,
@@ -54,6 +56,7 @@ export type {
   ScanResult,
   ScanSummary,
   SystemDeclaration,
+  SystemDomain,
   SystemScanResult,
   TracedSink,
   UndeclaredSystem,

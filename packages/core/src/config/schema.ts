@@ -22,8 +22,28 @@ const systemScopeSchema = z.object({
   exclude: z.array(z.string()).optional(),
 })
 
+const systemDomainSchema = z.enum([
+  'general_purpose',
+  'customer_support',
+  'internal_tooling',
+  'content_generation',
+  'creditworthiness',
+  'employment',
+  'insurance',
+  'education',
+  'legal',
+  'law_enforcement',
+  'migration',
+  'critical_infrastructure',
+  'biometric',
+  'emergency_services',
+  'public_benefits',
+  'election',
+])
+
 const systemClassificationSchema = z.object({
   risk_level: riskTierSchema,
+  domain: systemDomainSchema.optional().default('general_purpose'),
   annex_iii_category: annexIiiCategorySchema.optional(),
   rationale: z.string().optional(),
 })
