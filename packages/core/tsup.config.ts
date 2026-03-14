@@ -21,5 +21,8 @@ export default defineConfig([
       'pdfmake',
     ],
     noExternal: [],
+    esbuildOptions(options) {
+      options.resolveExtensions = ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs', '.json']
+    },
   },
 ])
