@@ -1,0 +1,15 @@
+version: "1"
+
+organisation:
+  name: "MismatchCo"
+  eu_presence: true
+  operator_role: provider
+
+systems:
+  - id: identity-check
+    name: "Identity Verification"
+    scope:
+      paths: ["src/**"]
+    classification:
+      risk_level: limited
+      rationale: "Basic identity verification"

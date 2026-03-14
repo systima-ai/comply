@@ -1,0 +1,147 @@
+{
+  "articles": [
+    {
+      "id": "art5",
+      "number": 5,
+      "title": "Prohibited AI Practices",
+      "description": "AI practices that are prohibited outright: subliminal manipulation, exploitation of vulnerabilities, social scoring, criminal risk prediction from profiling alone, untargeted facial recognition scraping, workplace/education emotion recognition, and biometric categorisation for protected attributes.",
+      "applicableRiskTiers": ["unacceptable"],
+      "enforcementDate": "2025-02-02",
+      "penaltyTier": "highest",
+      "penaltyDescription": "Up to EUR 35 million or 7% of worldwide annual turnover",
+      "referenceUrl": "https://artificialintelligenceact.eu/article/5/"
+    },
+    {
+      "id": "art6",
+      "number": 6,
+      "title": "Classification Rules for High-Risk AI Systems",
+      "description": "Defines two paths to high-risk classification: (1) AI as safety component of Annex I products requiring third-party conformity assessment; (2) AI systems listed in Annex III. Includes Article 6(3) derogation for systems that do not pose significant risk.",
+      "applicableRiskTiers": ["high"],
+      "enforcementDate": "2026-08-02",
+      "penaltyTier": "high",
+      "penaltyDescription": "Up to EUR 15 million or 3% of worldwide annual turnover",
+      "referenceUrl": "https://artificialintelligenceact.eu/article/6/"
+    },
+    {
+      "id": "art9",
+      "number": 9,
+      "title": "Risk Management System",
+      "description": "High-risk AI systems must have a continuous, iterative risk management system throughout the lifecycle. Must include risk identification, estimation, evaluation, and mitigation. Must function as deployment gates in CI/CD, not advisory documents.",
+      "applicableRiskTiers": ["high"],
+      "enforcementDate": "2026-08-02",
+      "penaltyTier": "high",
+      "penaltyDescription": "Up to EUR 15 million or 3% of worldwide annual turnover",
+      "referenceUrl": "https://artificialintelligenceact.eu/article/9/"
+    },
+    {
+      "id": "art10",
+      "number": 10,
+      "title": "Data and Data Governance",
+      "description": "Training, validation, and testing datasets must be relevant, sufficiently representative, and as error-free as possible. Requires examination for possible biases, dataset versioning, data lineage, and bias evaluation reports.",
+      "applicableRiskTiers": ["high"],
+      "enforcementDate": "2026-08-02",
+      "penaltyTier": "high",
+      "penaltyDescription": "Up to EUR 15 million or 3% of worldwide annual turnover",
+      "referenceUrl": "https://artificialintelligenceact.eu/article/10/"
+    },
+    {
+      "id": "art11",
+      "number": 11,
+      "title": "Technical Documentation",
+      "description": "High-risk AI systems must have technical documentation drawn up before placement on the market and kept up to date. Must cover Annex IV requirements across nine structured categories.",
+      "applicableRiskTiers": ["high"],
+      "enforcementDate": "2026-08-02",
+      "penaltyTier": "high",
+      "penaltyDescription": "Up to EUR 15 million or 3% of worldwide annual turnover",
+      "referenceUrl": "https://artificialintelligenceact.eu/article/11/"
+    },
+    {
+      "id": "art12",
+      "number": 12,
+      "title": "Record-Keeping and Logging",
+      "description": "High-risk AI systems must have automatic logging capabilities that record events relevant to identifying risk situations and substantial modifications throughout the lifecycle. Minimum retention of six months (Article 19).",
+      "applicableRiskTiers": ["high"],
+      "enforcementDate": "2026-08-02",
+      "penaltyTier": "high",
+      "penaltyDescription": "Up to EUR 15 million or 3% of worldwide annual turnover",
+      "referenceUrl": "https://artificialintelligenceact.eu/article/12/"
+    },
+    {
+      "id": "art13",
+      "number": 13,
+      "title": "Transparency and Provision of Information to Deployers",
+      "description": "High-risk AI systems must be designed to be sufficiently transparent for deployers to interpret output and use appropriately. Requires model cards, confidence score exposure, system limitation disclosures, and deployer instructions.",
+      "applicableRiskTiers": ["high"],
+      "enforcementDate": "2026-08-02",
+      "penaltyTier": "high",
+      "penaltyDescription": "Up to EUR 15 million or 3% of worldwide annual turnover",
+      "referenceUrl": "https://artificialintelligenceact.eu/article/13/"
+    },
+    {
+      "id": "art14",
+      "number": 14,
+      "title": "Human Oversight",
+      "description": "High-risk AI systems must be designed to allow effective human oversight during use. Three patterns: human-in-the-loop (review before action), human-on-the-loop (monitoring with intervention), human-over-the-loop (governance). Must include kill-switch capability.",
+      "applicableRiskTiers": ["high"],
+      "enforcementDate": "2026-08-02",
+      "penaltyTier": "high",
+      "penaltyDescription": "Up to EUR 15 million or 3% of worldwide annual turnover",
+      "referenceUrl": "https://artificialintelligenceact.eu/article/14/"
+    },
+    {
+      "id": "art15",
+      "number": 15,
+      "title": "Accuracy, Robustness, and Cybersecurity",
+      "description": "High-risk AI systems must achieve appropriate levels of accuracy, robustness, and cybersecurity. Requires evaluation suites, drift detection, adversarial testing, input validation, and rollback capability.",
+      "applicableRiskTiers": ["high"],
+      "enforcementDate": "2026-08-02",
+      "penaltyTier": "high",
+      "penaltyDescription": "Up to EUR 15 million or 3% of worldwide annual turnover",
+      "referenceUrl": "https://artificialintelligenceact.eu/article/15/"
+    },
+    {
+      "id": "art25",
+      "number": 25,
+      "title": "Responsibilities Along the AI Value Chain",
+      "description": "Any person who substantially modifies a high-risk AI system becomes a new provider. Fine-tuning, adding RAG, or wrapping in agentic orchestration can trigger role transition from deployer to provider.",
+      "applicableRiskTiers": ["high"],
+      "enforcementDate": "2026-08-02",
+      "penaltyTier": "high",
+      "penaltyDescription": "Up to EUR 15 million or 3% of worldwide annual turnover",
+      "referenceUrl": "https://artificialintelligenceact.eu/article/25/"
+    },
+    {
+      "id": "art27",
+      "number": 27,
+      "title": "Fundamental Rights Impact Assessment",
+      "description": "Deployers of high-risk AI systems that are bodies governed by public law or private entities providing public services must perform a fundamental rights impact assessment before deployment.",
+      "applicableRiskTiers": ["high"],
+      "enforcementDate": "2026-08-02",
+      "penaltyTier": "high",
+      "penaltyDescription": "Up to EUR 15 million or 3% of worldwide annual turnover",
+      "referenceUrl": "https://artificialintelligenceact.eu/article/27/"
+    },
+    {
+      "id": "art50",
+      "number": 50,
+      "title": "Transparency Obligations for All AI Systems",
+      "description": "All AI systems interacting with natural persons must disclose they are AI. AI-generated content must be machine-readably marked. Emotion recognition and biometric categorisation systems must inform exposed persons. Deepfakes must be disclosed.",
+      "applicableRiskTiers": ["high", "limited", "minimal"],
+      "enforcementDate": "2026-08-02",
+      "penaltyTier": "standard",
+      "penaltyDescription": "Up to EUR 7.5 million or 1% of worldwide annual turnover",
+      "referenceUrl": "https://artificialintelligenceact.eu/article/50/"
+    },
+    {
+      "id": "art72",
+      "number": 72,
+      "title": "Post-Market Monitoring by Providers",
+      "description": "Providers of high-risk AI systems must establish a post-market monitoring system proportionate to the nature and risks. Must monitor accuracy drift, input/output distribution shift, latency, error rates by category, and human override rates.",
+      "applicableRiskTiers": ["high"],
+      "enforcementDate": "2026-08-02",
+      "penaltyTier": "high",
+      "penaltyDescription": "Up to EUR 15 million or 3% of worldwide annual turnover",
+      "referenceUrl": "https://artificialintelligenceact.eu/article/72/"
+    }
+  ]
+}

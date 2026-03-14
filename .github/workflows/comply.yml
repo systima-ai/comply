@@ -1,0 +1,28 @@
+name: EU AI Act Compliance
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+  security-events: write
+
+jobs:
+  compliance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Systima Comply Scan
+        uses: systima-ai/comply@v1
+        id: comply
+        with:
+          fail-on: warning
+          output-format: all
+
+      - name: Upload SARIF
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: comply-results.sarif

@@ -1,0 +1,24 @@
+{
+  "name": "@systima/comply-action",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GitHub Action for Systima Comply EU AI Act compliance scanning",
+  "license": "Apache-2.0",
+  "author": "Systima Ltd. <hello@systima.ai>",
+  "type": "module",
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist .turbo"
+  },
+  "dependencies": {
+    "@actions/core": "^3.0.0",
+    "@actions/github": "^9.0.0",
+    "@systima/comply": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
+  }
+}

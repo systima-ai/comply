@@ -1,0 +1,628 @@
+{
+  "frameworks": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "category": "llm_provider",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": ["openai", "from openai"],
+        "packages": ["openai"]
+      },
+      "javascript": {
+        "imports": ["openai"],
+        "packages": ["openai"]
+      },
+      "envPatterns": ["OPENAI_API_KEY", "OPENAI_ORG_ID", "OPENAI_BASE_URL"],
+      "description": "OpenAI API client (GPT, DALL-E, Whisper, embeddings)"
+    },
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "category": "llm_provider",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": ["anthropic", "from anthropic"],
+        "packages": ["anthropic"]
+      },
+      "javascript": {
+        "imports": ["@anthropic-ai/sdk", "anthropic"],
+        "packages": ["@anthropic-ai/sdk"]
+      },
+      "envPatterns": ["ANTHROPIC_API_KEY"],
+      "description": "Anthropic Claude API client"
+    },
+    {
+      "id": "google-generativeai",
+      "name": "Google Generative AI",
+      "category": "llm_provider",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": ["google.generativeai", "from google.generativeai", "google.genai", "from google.genai"],
+        "packages": ["google-generativeai", "google-genai"]
+      },
+      "javascript": {
+        "imports": ["@google/generative-ai", "@google/genai"],
+        "packages": ["@google/generative-ai", "@google/genai"]
+      },
+      "envPatterns": ["GOOGLE_API_KEY", "GOOGLE_GENERATIVE_AI_API_KEY", "GEMINI_API_KEY"],
+      "description": "Google Gemini / Generative AI API client"
+    },
+    {
+      "id": "cohere",
+      "name": "Cohere",
+      "category": "llm_provider",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": ["cohere", "from cohere"],
+        "packages": ["cohere"]
+      },
+      "javascript": {
+        "imports": ["cohere-ai"],
+        "packages": ["cohere-ai"]
+      },
+      "envPatterns": ["COHERE_API_KEY", "CO_API_KEY"],
+      "description": "Cohere API client (Command, Embed, Rerank)"
+    },
+    {
+      "id": "mistralai",
+      "name": "Mistral AI",
+      "category": "llm_provider",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": ["mistralai", "from mistralai"],
+        "packages": ["mistralai"]
+      },
+      "javascript": {
+        "imports": ["@mistralai/mistralai"],
+        "packages": ["@mistralai/mistralai"]
+      },
+      "envPatterns": ["MISTRAL_API_KEY"],
+      "description": "Mistral AI API client"
+    },
+    {
+      "id": "together-ai",
+      "name": "Together AI",
+      "category": "llm_provider",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": ["together", "from together"],
+        "packages": ["together"]
+      },
+      "javascript": {
+        "imports": ["together-ai"],
+        "packages": ["together-ai"]
+      },
+      "envPatterns": ["TOGETHER_API_KEY"],
+      "description": "Together AI inference API client"
+    },
+    {
+      "id": "groq",
+      "name": "Groq",
+      "category": "llm_provider",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": ["groq", "from groq"],
+        "packages": ["groq"]
+      },
+      "javascript": {
+        "imports": ["groq-sdk"],
+        "packages": ["groq-sdk"]
+      },
+      "envPatterns": ["GROQ_API_KEY"],
+      "description": "Groq inference API client"
+    },
+    {
+      "id": "replicate",
+      "name": "Replicate",
+      "category": "llm_provider",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": ["replicate", "from replicate"],
+        "packages": ["replicate"]
+      },
+      "javascript": {
+        "imports": ["replicate"],
+        "packages": ["replicate"]
+      },
+      "envPatterns": ["REPLICATE_API_TOKEN"],
+      "description": "Replicate model hosting API client"
+    },
+    {
+      "id": "tensorflow",
+      "name": "TensorFlow",
+      "category": "ml_framework",
+      "riskSignals": ["minimal"],
+      "python": {
+        "imports": ["tensorflow", "from tensorflow", "import tf"],
+        "packages": ["tensorflow", "tensorflow-gpu", "tf-nightly"]
+      },
+      "javascript": {
+        "imports": ["@tensorflow/tfjs", "@tensorflow/tfjs-node"],
+        "packages": ["@tensorflow/tfjs", "@tensorflow/tfjs-node", "@tensorflow/tfjs-node-gpu"]
+      },
+      "envPatterns": [],
+      "description": "TensorFlow machine learning framework"
+    },
+    {
+      "id": "pytorch",
+      "name": "PyTorch",
+      "category": "ml_framework",
+      "riskSignals": ["minimal"],
+      "python": {
+        "imports": ["torch", "from torch", "import torchvision", "from torchvision"],
+        "packages": ["torch", "torchvision", "torchaudio"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": [],
+      "description": "PyTorch deep learning framework"
+    },
+    {
+      "id": "jax",
+      "name": "JAX",
+      "category": "ml_framework",
+      "riskSignals": ["minimal"],
+      "python": {
+        "imports": ["jax", "from jax", "import flax", "from flax"],
+        "packages": ["jax", "jaxlib", "flax"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": [],
+      "description": "Google JAX numerical computing framework"
+    },
+    {
+      "id": "scikit-learn",
+      "name": "scikit-learn",
+      "category": "ml_framework",
+      "riskSignals": ["minimal"],
+      "python": {
+        "imports": ["sklearn", "from sklearn", "import sklearn"],
+        "packages": ["scikit-learn", "sklearn"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": [],
+      "description": "scikit-learn machine learning library"
+    },
+    {
+      "id": "xgboost",
+      "name": "XGBoost",
+      "category": "ml_framework",
+      "riskSignals": ["minimal"],
+      "python": {
+        "imports": ["xgboost", "from xgboost", "import xgb"],
+        "packages": ["xgboost"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": [],
+      "description": "XGBoost gradient boosting framework"
+    },
+    {
+      "id": "lightgbm",
+      "name": "LightGBM",
+      "category": "ml_framework",
+      "riskSignals": ["minimal"],
+      "python": {
+        "imports": ["lightgbm", "from lightgbm", "import lgb"],
+        "packages": ["lightgbm"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": [],
+      "description": "LightGBM gradient boosting framework"
+    },
+    {
+      "id": "catboost",
+      "name": "CatBoost",
+      "category": "ml_framework",
+      "riskSignals": ["minimal"],
+      "python": {
+        "imports": ["catboost", "from catboost"],
+        "packages": ["catboost"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": [],
+      "description": "CatBoost gradient boosting framework"
+    },
+    {
+      "id": "langchain",
+      "name": "LangChain",
+      "category": "agent_framework",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": ["langchain", "from langchain", "langchain_core", "from langchain_core", "langchain_community", "from langchain_community", "langchain_openai", "from langchain_openai"],
+        "packages": ["langchain", "langchain-core", "langchain-community", "langchain-openai", "langchain-anthropic"]
+      },
+      "javascript": {
+        "imports": ["langchain", "@langchain/core", "@langchain/openai", "@langchain/anthropic", "@langchain/community"],
+        "packages": ["langchain", "@langchain/core", "@langchain/openai", "@langchain/anthropic", "@langchain/community"]
+      },
+      "envPatterns": ["LANGCHAIN_API_KEY", "LANGCHAIN_TRACING_V2"],
+      "description": "LangChain agent and chain framework"
+    },
+    {
+      "id": "llamaindex",
+      "name": "LlamaIndex",
+      "category": "agent_framework",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": ["llama_index", "from llama_index"],
+        "packages": ["llama-index", "llama-index-core"]
+      },
+      "javascript": {
+        "imports": ["llamaindex"],
+        "packages": ["llamaindex"]
+      },
+      "envPatterns": [],
+      "description": "LlamaIndex data framework for LLM applications"
+    },
+    {
+      "id": "autogen",
+      "name": "AutoGen",
+      "category": "agent_framework",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": ["autogen", "from autogen", "autogen_agentchat", "from autogen_agentchat"],
+        "packages": ["autogen", "autogen-agentchat", "pyautogen"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": [],
+      "description": "Microsoft AutoGen multi-agent framework"
+    },
+    {
+      "id": "crewai",
+      "name": "CrewAI",
+      "category": "agent_framework",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": ["crewai", "from crewai"],
+        "packages": ["crewai"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": [],
+      "description": "CrewAI multi-agent orchestration framework"
+    },
+    {
+      "id": "semantic-kernel",
+      "name": "Semantic Kernel",
+      "category": "agent_framework",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": ["semantic_kernel", "from semantic_kernel"],
+        "packages": ["semantic-kernel"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": [],
+      "description": "Microsoft Semantic Kernel AI orchestration"
+    },
+    {
+      "id": "haystack",
+      "name": "Haystack",
+      "category": "agent_framework",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": ["haystack", "from haystack"],
+        "packages": ["haystack-ai", "farm-haystack"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": [],
+      "description": "deepset Haystack NLP/RAG framework"
+    },
+    {
+      "id": "dspy",
+      "name": "DSPy",
+      "category": "agent_framework",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": ["dspy", "from dspy"],
+        "packages": ["dspy", "dspy-ai"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": [],
+      "description": "Stanford DSPy programming framework for LMs"
+    },
+    {
+      "id": "face-recognition",
+      "name": "face_recognition",
+      "category": "computer_vision",
+      "riskSignals": ["high"],
+      "python": {
+        "imports": ["face_recognition", "from face_recognition"],
+        "packages": ["face-recognition", "face_recognition"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": [],
+      "description": "Face recognition library (biometric identification; Annex III Category 1)"
+    },
+    {
+      "id": "deepface",
+      "name": "DeepFace",
+      "category": "computer_vision",
+      "riskSignals": ["high"],
+      "python": {
+        "imports": ["deepface", "from deepface"],
+        "packages": ["deepface"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": [],
+      "description": "DeepFace facial analysis (recognition, verification, demographic analysis; Annex III Category 1)"
+    },
+    {
+      "id": "insightface",
+      "name": "InsightFace",
+      "category": "computer_vision",
+      "riskSignals": ["high"],
+      "python": {
+        "imports": ["insightface", "from insightface"],
+        "packages": ["insightface"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": [],
+      "description": "InsightFace 2D/3D face analysis (biometric identification; Annex III Category 1)"
+    },
+    {
+      "id": "opencv-dnn",
+      "name": "OpenCV DNN",
+      "category": "computer_vision",
+      "riskSignals": ["minimal"],
+      "python": {
+        "imports": ["cv2.dnn", "from cv2 import dnn"],
+        "packages": ["opencv-python", "opencv-contrib-python", "opencv-python-headless"]
+      },
+      "javascript": {
+        "imports": ["opencv4nodejs", "@techstark/opencv-js"],
+        "packages": ["opencv4nodejs", "@techstark/opencv-js"]
+      },
+      "envPatterns": [],
+      "description": "OpenCV Deep Neural Network module (general computer vision)"
+    },
+    {
+      "id": "mediapipe",
+      "name": "MediaPipe",
+      "category": "computer_vision",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": ["mediapipe", "from mediapipe"],
+        "packages": ["mediapipe"]
+      },
+      "javascript": {
+        "imports": ["@mediapipe/tasks-vision", "@mediapipe/face_mesh"],
+        "packages": ["@mediapipe/tasks-vision", "@mediapipe/face_mesh", "@mediapipe/hands", "@mediapipe/pose"]
+      },
+      "envPatterns": [],
+      "description": "Google MediaPipe ML solutions (face mesh, hands, pose; potential Annex III Category 1 if used for biometric identification)"
+    },
+    {
+      "id": "transformers",
+      "name": "Hugging Face Transformers",
+      "category": "nlp_embeddings",
+      "riskSignals": ["minimal"],
+      "python": {
+        "imports": ["transformers", "from transformers"],
+        "packages": ["transformers"]
+      },
+      "javascript": {
+        "imports": ["@xenova/transformers", "@huggingface/transformers"],
+        "packages": ["@xenova/transformers", "@huggingface/transformers"]
+      },
+      "envPatterns": ["HF_TOKEN", "HUGGING_FACE_HUB_TOKEN", "HUGGINGFACE_API_KEY"],
+      "description": "Hugging Face Transformers (NLP, vision, multimodal models)"
+    },
+    {
+      "id": "sentence-transformers",
+      "name": "Sentence Transformers",
+      "category": "nlp_embeddings",
+      "riskSignals": ["minimal"],
+      "python": {
+        "imports": ["sentence_transformers", "from sentence_transformers"],
+        "packages": ["sentence-transformers"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": [],
+      "description": "Sentence Transformers for text embeddings and semantic similarity"
+    },
+    {
+      "id": "spacy",
+      "name": "spaCy",
+      "category": "nlp_embeddings",
+      "riskSignals": ["minimal"],
+      "python": {
+        "imports": ["spacy", "from spacy"],
+        "packages": ["spacy"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": [],
+      "description": "spaCy industrial-strength NLP library"
+    },
+    {
+      "id": "nltk",
+      "name": "NLTK",
+      "category": "nlp_embeddings",
+      "riskSignals": ["minimal"],
+      "python": {
+        "imports": ["nltk", "from nltk"],
+        "packages": ["nltk"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": [],
+      "description": "Natural Language Toolkit"
+    },
+    {
+      "id": "flair",
+      "name": "Flair",
+      "category": "nlp_embeddings",
+      "riskSignals": ["minimal"],
+      "python": {
+        "imports": ["flair", "from flair"],
+        "packages": ["flair"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": [],
+      "description": "Flair NLP framework"
+    },
+    {
+      "id": "vercel-ai",
+      "name": "Vercel AI SDK",
+      "category": "ai_infrastructure",
+      "riskSignals": ["minimal"],
+      "python": {
+        "imports": [],
+        "packages": []
+      },
+      "javascript": {
+        "imports": ["ai", "ai/rsc", "@ai-sdk/openai", "@ai-sdk/anthropic", "@ai-sdk/google", "@ai-sdk/mistral"],
+        "packages": ["ai", "@ai-sdk/openai", "@ai-sdk/anthropic", "@ai-sdk/google", "@ai-sdk/mistral", "@ai-sdk/amazon-bedrock", "@ai-sdk/azure", "@ai-sdk/cohere", "@ai-sdk/groq"]
+      },
+      "envPatterns": [],
+      "description": "Vercel AI SDK (unified LLM interface with streaming, tool calling, middleware)"
+    },
+    {
+      "id": "mastra",
+      "name": "Mastra",
+      "category": "agent_framework",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": [],
+        "packages": []
+      },
+      "javascript": {
+        "imports": ["@mastra/core", "mastra"],
+        "packages": ["@mastra/core", "@mastra/agent", "@mastra/memory", "@mastra/rag"]
+      },
+      "envPatterns": [],
+      "description": "Mastra agentic AI framework (agents, workflows, RAG, memory)"
+    },
+    {
+      "id": "mlflow",
+      "name": "MLflow",
+      "category": "ai_infrastructure",
+      "riskSignals": ["minimal"],
+      "python": {
+        "imports": ["mlflow", "from mlflow"],
+        "packages": ["mlflow"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": ["MLFLOW_TRACKING_URI"],
+      "description": "MLflow experiment tracking and model registry"
+    },
+    {
+      "id": "wandb",
+      "name": "Weights & Biases",
+      "category": "ai_infrastructure",
+      "riskSignals": ["minimal"],
+      "python": {
+        "imports": ["wandb", "from wandb"],
+        "packages": ["wandb"]
+      },
+      "javascript": {
+        "imports": [],
+        "packages": []
+      },
+      "envPatterns": ["WANDB_API_KEY", "WANDB_PROJECT"],
+      "description": "Weights & Biases experiment tracking"
+    },
+    {
+      "id": "huggingface-hub",
+      "name": "Hugging Face Hub",
+      "category": "ai_infrastructure",
+      "riskSignals": ["minimal"],
+      "python": {
+        "imports": ["huggingface_hub", "from huggingface_hub"],
+        "packages": ["huggingface-hub"]
+      },
+      "javascript": {
+        "imports": ["@huggingface/hub", "@huggingface/inference"],
+        "packages": ["@huggingface/hub", "@huggingface/inference"]
+      },
+      "envPatterns": ["HF_TOKEN", "HUGGING_FACE_HUB_TOKEN"],
+      "description": "Hugging Face Hub client for model/dataset management"
+    },
+    {
+      "id": "aws-bedrock",
+      "name": "AWS Bedrock",
+      "category": "llm_provider",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": ["from boto3", "bedrock-runtime", "bedrock"],
+        "packages": ["boto3"]
+      },
+      "javascript": {
+        "imports": ["@aws-sdk/client-bedrock-runtime", "@aws-sdk/client-bedrock"],
+        "packages": ["@aws-sdk/client-bedrock-runtime", "@aws-sdk/client-bedrock"]
+      },
+      "envPatterns": ["AWS_BEDROCK_REGION", "AWS_ACCESS_KEY_ID"],
+      "description": "AWS Bedrock foundation model API"
+    },
+    {
+      "id": "azure-openai",
+      "name": "Azure OpenAI",
+      "category": "llm_provider",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": ["from openai import AzureOpenAI"],
+        "packages": ["openai"]
+      },
+      "javascript": {
+        "imports": ["@azure/openai"],
+        "packages": ["@azure/openai"]
+      },
+      "envPatterns": ["AZURE_OPENAI_API_KEY", "AZURE_OPENAI_ENDPOINT", "AZURE_OPENAI_DEPLOYMENT"],
+      "description": "Azure OpenAI Service API client"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-03-13",
+  "entries": [
+    {
+      "date": "2024-06-13",
+      "type": "publication",
+      "title": "EU AI Act published in the Official Journal",
+      "description": "Regulation (EU) 2024/1689 published. Entry into force: 1 August 2024.",
+      "affectedArticles": [],
+      "source": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj"
+    },
+    {
+      "date": "2025-02-02",
+      "type": "enforcement",
+      "title": "Prohibited practices (Article 5) become enforceable",
+      "description": "First enforcement milestone. Social scoring, subliminal manipulation, exploitation of vulnerabilities, certain biometric uses, and workplace/education emotion recognition are now prohibited.",
+      "affectedArticles": ["art5"],
+      "source": "https://artificialintelligenceact.eu/article/5/"
+    },
+    {
+      "date": "2025-08-02",
+      "type": "enforcement",
+      "title": "GPAI obligations become enforceable",
+      "description": "General-purpose AI model providers must comply with transparency and documentation obligations.",
+      "affectedArticles": [],
+      "source": "https://artificialintelligenceact.eu/chapter/5/"
+    },
+    {
+      "date": "2025-11-01",
+      "type": "proposal",
+      "title": "Digital Omnibus on AI proposed",
+      "description": "European Commission proposes delaying Annex III high-risk obligations by up to 6 months after harmonised standards are ready (maximum December 2027). Links compliance timeline to standards availability.",
+      "affectedArticles": ["art9", "art10", "art11", "art12", "art13", "art14", "art15"],
+      "source": "https://artificialintelligenceact.eu/assessment/eu-ai-act-omnibus-regulation/"
+    }
+  ]
+}

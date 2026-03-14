@@ -1,0 +1,77 @@
+{
+  "name": "@systima/comply",
+  "version": "0.1.0",
+  "description": "EU AI Act compliance scanning for CI/CD pipelines",
+  "license": "Apache-2.0",
+  "author": "Systima Ltd. <hello@systima.ai>",
+  "homepage": "https://github.com/systima-ai/comply",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/systima-ai/comply.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/systima-ai/comply/issues"
+  },
+  "keywords": [
+    "eu-ai-act",
+    "ai-compliance",
+    "ai-governance",
+    "ci-cd",
+    "github-actions",
+    "compliance-scanner",
+    "regulatory",
+    "typescript"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "comply": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "knowledge"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist .turbo"
+  },
+  "dependencies": {
+    "citty": "^0.2.1",
+    "consola": "^3.4.0",
+    "fast-glob": "^3.3.3",
+    "ignore": "^7.0.5",
+    "node-sarif-builder": "^4.0.0",
+    "picomatch": "^4.0.3",
+    "smol-toml": "^1.6.0",
+    "web-tree-sitter": "^0.26.6",
+    "yaml": "^2.8.2",
+    "zod": "^3.24.0"
+  },
+  "optionalDependencies": {
+    "tree-sitter-python": "^0.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.0",
+    "@types/picomatch": "^3.0.2",
+    "@types/sarif": "^2.1.7",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.0"
+  }
+}

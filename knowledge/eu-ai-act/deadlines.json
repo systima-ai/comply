@@ -1,0 +1,53 @@
+{
+  "timeline": [
+    {
+      "date": "2025-02-02",
+      "description": "Prohibited AI practices (Article 5) enforceable",
+      "articles": ["art5"],
+      "status": "in_force"
+    },
+    {
+      "date": "2025-08-02",
+      "description": "GPAI model obligations (Chapter V) enforceable",
+      "articles": [],
+      "status": "in_force"
+    },
+    {
+      "date": "2026-08-02",
+      "description": "High-risk obligations (Annex III), transparency obligations (Article 50), and most other provisions enforceable",
+      "articles": ["art6", "art9", "art10", "art11", "art12", "art13", "art14", "art15", "art25", "art27", "art50", "art72"],
+      "status": "upcoming",
+      "digitalOmnibusNote": "The Digital Omnibus on AI (proposed November 2025) may delay Annex III high-risk obligations by up to 6 months after harmonised standards are ready (maximum December 2027). If not adopted before August 2026, original deadlines apply."
+    },
+    {
+      "date": "2027-08-02",
+      "description": "High-risk via Annex I (Article 6(1)) for certain product categories",
+      "articles": ["art6"],
+      "status": "future"
+    },
+    {
+      "date": "2027-12-02",
+      "description": "Maximum possible delay for Annex III high-risk obligations under Digital Omnibus proposal",
+      "articles": ["art9", "art10", "art11", "art12", "art13", "art14", "art15"],
+      "status": "conditional",
+      "digitalOmnibusNote": "Only applies if the Digital Omnibus is adopted and harmonised standards are not ready by August 2026."
+    }
+  ],
+  "penalties": {
+    "highest": {
+      "description": "Prohibited practices (Article 5)",
+      "maxFine": "EUR 35 million or 7% of worldwide annual turnover",
+      "articles": ["art5"]
+    },
+    "high": {
+      "description": "High-risk system obligations",
+      "maxFine": "EUR 15 million or 3% of worldwide annual turnover",
+      "articles": ["art6", "art9", "art10", "art11", "art12", "art13", "art14", "art15", "art25", "art27", "art72"]
+    },
+    "standard": {
+      "description": "Transparency obligations and supplying incorrect information",
+      "maxFine": "EUR 7.5 million or 1% of worldwide annual turnover",
+      "articles": ["art50"]
+    }
+  }
+}

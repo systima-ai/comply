@@ -1,0 +1,48 @@
+version: "1"
+
+organisation:
+  name: "TechCorp"
+  eu_presence: true
+  operator_role: both
+
+systems:
+  - id: loan-assessor
+    name: "Loan Assessment Engine"
+    description: "ML model scoring loan applications"
+    scope:
+      paths:
+        - services/lending/**
+    classification:
+      risk_level: high
+      annex_iii_category: "5b"
+      rationale: "Automated credit scoring"
+    regulations:
+      - eu_ai_act
+      - gdpr
+    documentation:
+      risk_management: docs/lending/risk-management.md
+      data_governance: docs/lending/data-governance.md
+      technical_docs: docs/lending/technical-docs.md
+      transparency: docs/lending/transparency.md
+      human_oversight: docs/lending/human-oversight.md
+
+  - id: support-chatbot
+    name: "Customer Support Chatbot"
+    scope:
+      paths:
+        - services/chatbot/**
+    classification:
+      risk_level: limited
+      rationale: "AI chatbot; Article 50 transparency obligations"
+    documentation:
+      transparency: docs/chatbot/ai-disclosure.md
+
+  - id: internal-search
+    name: "Internal Document Search"
+    description: "RAG-based search over internal documentation"
+    scope:
+      paths:
+        - services/search/**
+    classification:
+      risk_level: minimal
+      rationale: "Internal tool; no decisions about natural persons"
