@@ -13,5 +13,12 @@ export default defineConfig([
     target: 'node20',
     splitting: false,
     shims: true,
+    external: [
+      'typescript',
+      'web-tree-sitter',
+      'tree-sitter-python',
+      'node-sarif-builder',
+    ],
+    noExternal: [],
   },
 ])
