@@ -1,16 +1,20 @@
+import { createRequire } from 'module'; const require = createRequire(import.meta.url);
 import {
   __commonJS,
+  __dirname,
   __esm,
   __export,
   __require,
   __toCommonJS,
-  __toESM
-} from "./chunk-PLDDJCW6.js";
+  __toESM,
+  init_esm_shims
+} from "./chunk-755GOCAW.js";
 
 // ../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/core.js
 var require_core = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/core.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory) {
       if (typeof exports === "object") {
         module.exports = exports = factory();
@@ -620,6 +624,7 @@ var require_core = __commonJS({
 var require_x64_core = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/x64-core.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core());
@@ -878,6 +883,7 @@ var require_x64_core = __commonJS({
 var require_lib_typedarrays = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/lib-typedarrays.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core());
@@ -924,6 +930,7 @@ var require_lib_typedarrays = __commonJS({
 var require_enc_utf16 = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/enc-utf16.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core());
@@ -1043,6 +1050,7 @@ var require_enc_utf16 = __commonJS({
 var require_enc_base64 = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/enc-base64.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core());
@@ -1152,6 +1160,7 @@ var require_enc_base64 = __commonJS({
 var require_enc_base64url = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/enc-base64url.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core());
@@ -1272,6 +1281,7 @@ var require_enc_base64url = __commonJS({
 var require_md5 = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/md5.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core());
@@ -1452,6 +1462,7 @@ var require_md5 = __commonJS({
 var require_sha1 = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/sha1.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core());
@@ -1544,6 +1555,7 @@ var require_sha1 = __commonJS({
 var require_sha256 = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/sha256.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core());
@@ -1666,6 +1678,7 @@ var require_sha256 = __commonJS({
 var require_sha224 = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/sha224.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_sha256());
@@ -1712,6 +1725,7 @@ var require_sha224 = __commonJS({
 var require_sha512 = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/sha512.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_x64_core());
@@ -1995,6 +2009,7 @@ var require_sha512 = __commonJS({
 var require_sha384 = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/sha384.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_x64_core(), require_sha512());
@@ -2042,6 +2057,7 @@ var require_sha384 = __commonJS({
 var require_sha3 = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/sha3.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_x64_core());
@@ -2245,6 +2261,7 @@ var require_sha3 = __commonJS({
 var require_ripemd160 = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/ripemd160.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core());
@@ -2717,6 +2734,7 @@ var require_ripemd160 = __commonJS({
 var require_hmac = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/hmac.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core());
@@ -2825,6 +2843,7 @@ var require_hmac = __commonJS({
 var require_pbkdf2 = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/pbkdf2.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_sha256(), require_hmac());
@@ -2924,6 +2943,7 @@ var require_pbkdf2 = __commonJS({
 var require_evpkdf = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/evpkdf.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_sha1(), require_hmac());
@@ -3016,6 +3036,7 @@ var require_evpkdf = __commonJS({
 var require_cipher_core = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/cipher-core.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_evpkdf());
@@ -3661,6 +3682,7 @@ var require_cipher_core = __commonJS({
 var require_mode_cfb = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/mode-cfb.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_cipher_core());
@@ -3714,6 +3736,7 @@ var require_mode_cfb = __commonJS({
 var require_mode_ctr = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/mode-ctr.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_cipher_core());
@@ -3755,6 +3778,7 @@ var require_mode_ctr = __commonJS({
 var require_mode_ctr_gladman = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/mode-ctr-gladman.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_cipher_core());
@@ -3831,6 +3855,7 @@ var require_mode_ctr_gladman = __commonJS({
 var require_mode_ofb = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/mode-ofb.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_cipher_core());
@@ -3870,6 +3895,7 @@ var require_mode_ofb = __commonJS({
 var require_mode_ecb = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/mode-ecb.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_cipher_core());
@@ -3902,6 +3928,7 @@ var require_mode_ecb = __commonJS({
 var require_pad_ansix923 = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/pad-ansix923.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_cipher_core());
@@ -3935,6 +3962,7 @@ var require_pad_ansix923 = __commonJS({
 var require_pad_iso10126 = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/pad-iso10126.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_cipher_core());
@@ -3964,6 +3992,7 @@ var require_pad_iso10126 = __commonJS({
 var require_pad_iso97971 = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/pad-iso97971.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_cipher_core());
@@ -3992,6 +4021,7 @@ var require_pad_iso97971 = __commonJS({
 var require_pad_zeropadding = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/pad-zeropadding.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_cipher_core());
@@ -4027,6 +4057,7 @@ var require_pad_zeropadding = __commonJS({
 var require_pad_nopadding = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/pad-nopadding.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_cipher_core());
@@ -4051,6 +4082,7 @@ var require_pad_nopadding = __commonJS({
 var require_format_hex = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/format-hex.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_cipher_core());
@@ -4112,6 +4144,7 @@ var require_format_hex = __commonJS({
 var require_aes = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/aes.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_enc_base64(), require_md5(), require_evpkdf(), require_cipher_core());
@@ -4267,6 +4300,7 @@ var require_aes = __commonJS({
 var require_tripledes = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/tripledes.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_enc_base64(), require_md5(), require_evpkdf(), require_cipher_core());
@@ -5049,6 +5083,7 @@ var require_tripledes = __commonJS({
 var require_rc4 = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/rc4.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_enc_base64(), require_md5(), require_evpkdf(), require_cipher_core());
@@ -5133,6 +5168,7 @@ var require_rc4 = __commonJS({
 var require_rabbit = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/rabbit.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_enc_base64(), require_md5(), require_evpkdf(), require_cipher_core());
@@ -5263,6 +5299,7 @@ var require_rabbit = __commonJS({
 var require_rabbit_legacy = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/rabbit-legacy.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_enc_base64(), require_md5(), require_evpkdf(), require_cipher_core());
@@ -5390,6 +5427,7 @@ var require_rabbit_legacy = __commonJS({
 var require_blowfish = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/blowfish.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_enc_base64(), require_md5(), require_evpkdf(), require_cipher_core());
@@ -6580,6 +6618,7 @@ var require_blowfish = __commonJS({
 var require_crypto_js = __commonJS({
   "../../node_modules/.pnpm/crypto-js@4.2.0/node_modules/crypto-js/index.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function(root, factory, undef) {
       if (typeof exports === "object") {
         module.exports = exports = factory(require_core(), require_x64_core(), require_lib_typedarrays(), require_enc_utf16(), require_enc_base64(), require_enc_base64url(), require_md5(), require_sha1(), require_sha256(), require_sha224(), require_sha512(), require_sha384(), require_sha3(), require_ripemd160(), require_hmac(), require_pbkdf2(), require_evpkdf(), require_cipher_core(), require_mode_cfb(), require_mode_ctr(), require_mode_ctr_gladman(), require_mode_ofb(), require_mode_ecb(), require_pad_ansix923(), require_pad_iso10126(), require_pad_iso97971(), require_pad_zeropadding(), require_pad_nopadding(), require_format_hex(), require_aes(), require_tripledes(), require_rc4(), require_rabbit(), require_rabbit_legacy(), require_blowfish());
@@ -6599,6 +6638,7 @@ var ENCODING_MAPPING, DecodeStream;
 var init_DecodeStream = __esm({
   "../../node_modules/.pnpm/restructure@3.0.2/node_modules/restructure/src/DecodeStream.js"() {
     "use strict";
+    init_esm_shims();
     ENCODING_MAPPING = {
       utf16le: "utf-16le",
       ucs2: "utf-16le",
@@ -6698,6 +6738,7 @@ var textEncoder, isBigEndian, EncodeStream;
 var init_EncodeStream = __esm({
   "../../node_modules/.pnpm/restructure@3.0.2/node_modules/restructure/src/EncodeStream.js"() {
     "use strict";
+    init_esm_shims();
     init_DecodeStream();
     textEncoder = new TextEncoder();
     isBigEndian = new Uint8Array(new Uint16Array([4660]).buffer)[0] == 18;
@@ -6798,6 +6839,7 @@ var Base;
 var init_Base = __esm({
   "../../node_modules/.pnpm/restructure@3.0.2/node_modules/restructure/src/Base.js"() {
     "use strict";
+    init_esm_shims();
     init_DecodeStream();
     init_EncodeStream();
     Base = class {
@@ -6821,6 +6863,7 @@ var NumberT, uint8, uint16be, uint16, uint16le, uint24be, uint24, uint24le, uint
 var init_Number = __esm({
   "../../node_modules/.pnpm/restructure@3.0.2/node_modules/restructure/src/Number.js"() {
     "use strict";
+    init_esm_shims();
     init_DecodeStream();
     init_Base();
     NumberT = class extends Base {
@@ -6908,6 +6951,7 @@ var PropertyDescriptor;
 var init_utils = __esm({
   "../../node_modules/.pnpm/restructure@3.0.2/node_modules/restructure/src/utils.js"() {
     "use strict";
+    init_esm_shims();
     init_Number();
     PropertyDescriptor = class {
       constructor(opts = {}) {
@@ -6927,6 +6971,7 @@ var ArrayT;
 var init_Array = __esm({
   "../../node_modules/.pnpm/restructure@3.0.2/node_modules/restructure/src/Array.js"() {
     "use strict";
+    init_esm_shims();
     init_Base();
     init_Number();
     init_utils();
@@ -7014,6 +7059,7 @@ var LazyArray, LazyArrayValue;
 var init_LazyArray = __esm({
   "../../node_modules/.pnpm/restructure@3.0.2/node_modules/restructure/src/LazyArray.js"() {
     "use strict";
+    init_esm_shims();
     init_Array();
     init_Number();
     init_utils();
@@ -7083,6 +7129,7 @@ var Bitfield;
 var init_Bitfield = __esm({
   "../../node_modules/.pnpm/restructure@3.0.2/node_modules/restructure/src/Bitfield.js"() {
     "use strict";
+    init_esm_shims();
     init_Base();
     Bitfield = class extends Base {
       constructor(type, flags = []) {
@@ -7124,6 +7171,7 @@ var init_Bitfield = __esm({
 var init_Boolean = __esm({
   "../../node_modules/.pnpm/restructure@3.0.2/node_modules/restructure/src/Boolean.js"() {
     "use strict";
+    init_esm_shims();
     init_Base();
   }
 });
@@ -7133,6 +7181,7 @@ var BufferT;
 var init_Buffer = __esm({
   "../../node_modules/.pnpm/restructure@3.0.2/node_modules/restructure/src/Buffer.js"() {
     "use strict";
+    init_esm_shims();
     init_Base();
     init_Number();
     init_utils();
@@ -7169,6 +7218,7 @@ var init_Buffer = __esm({
 var init_Enum = __esm({
   "../../node_modules/.pnpm/restructure@3.0.2/node_modules/restructure/src/Enum.js"() {
     "use strict";
+    init_esm_shims();
     init_Base();
   }
 });
@@ -7178,6 +7228,7 @@ var Optional;
 var init_Optional = __esm({
   "../../node_modules/.pnpm/restructure@3.0.2/node_modules/restructure/src/Optional.js"() {
     "use strict";
+    init_esm_shims();
     init_Base();
     Optional = class extends Base {
       constructor(type, condition = true) {
@@ -7223,6 +7274,7 @@ var Reserved;
 var init_Reserved = __esm({
   "../../node_modules/.pnpm/restructure@3.0.2/node_modules/restructure/src/Reserved.js"() {
     "use strict";
+    init_esm_shims();
     init_Base();
     init_utils();
     Reserved = class extends Base {
@@ -7305,6 +7357,7 @@ var StringT;
 var init_String = __esm({
   "../../node_modules/.pnpm/restructure@3.0.2/node_modules/restructure/src/String.js"() {
     "use strict";
+    init_esm_shims();
     init_Base();
     init_Number();
     init_utils();
@@ -7379,6 +7432,7 @@ var Struct;
 var init_Struct = __esm({
   "../../node_modules/.pnpm/restructure@3.0.2/node_modules/restructure/src/Struct.js"() {
     "use strict";
+    init_esm_shims();
     init_Base();
     init_utils();
     Struct = class extends Base {
@@ -7481,6 +7535,7 @@ var getPath, VersionedStruct;
 var init_VersionedStruct = __esm({
   "../../node_modules/.pnpm/restructure@3.0.2/node_modules/restructure/src/VersionedStruct.js"() {
     "use strict";
+    init_esm_shims();
     init_Struct();
     getPath = (object, pathArray) => {
       return pathArray.reduce((prevObj, key) => prevObj && prevObj[key], object);
@@ -7603,6 +7658,7 @@ var Pointer, VoidPointer;
 var init_Pointer = __esm({
   "../../node_modules/.pnpm/restructure@3.0.2/node_modules/restructure/src/Pointer.js"() {
     "use strict";
+    init_esm_shims();
     init_utils();
     init_Base();
     Pointer = class extends Base {
@@ -7767,6 +7823,7 @@ var init_Pointer = __esm({
 var init_restructure = __esm({
   "../../node_modules/.pnpm/restructure@3.0.2/node_modules/restructure/index.js"() {
     "use strict";
+    init_esm_shims();
     init_EncodeStream();
     init_DecodeStream();
     init_Array();
@@ -7796,6 +7853,7 @@ function _define_property(obj, key, value) {
 var init_define_property = __esm({
   "../../node_modules/.pnpm/@swc+helpers@0.5.19/node_modules/@swc/helpers/esm/_define_property.js"() {
     "use strict";
+    init_esm_shims();
   }
 });
 
@@ -7809,6 +7867,7 @@ function __decorate(decorators, target, key, desc) {
 var init_tslib_es6 = __esm({
   "../../node_modules/.pnpm/tslib@2.8.1/node_modules/tslib/tslib.es6.mjs"() {
     "use strict";
+    init_esm_shims();
   }
 });
 
@@ -7816,6 +7875,7 @@ var init_tslib_es6 = __esm({
 var init_ts_decorate = __esm({
   "../../node_modules/.pnpm/@swc+helpers@0.5.19/node_modules/@swc/helpers/esm/_ts_decorate.js"() {
     "use strict";
+    init_esm_shims();
     init_tslib_es6();
   }
 });
@@ -7824,6 +7884,7 @@ var init_ts_decorate = __esm({
 var require_fast_deep_equal = __commonJS({
   "../../node_modules/.pnpm/fast-deep-equal@3.1.3/node_modules/fast-deep-equal/index.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     module.exports = function equal(a, b) {
       if (a === b) return true;
       if (a && b && typeof a == "object" && typeof b == "object") {
@@ -7859,6 +7920,7 @@ var require_fast_deep_equal = __commonJS({
 var require_base64_js = __commonJS({
   "../../node_modules/.pnpm/base64-js@1.5.1/node_modules/base64-js/index.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.byteLength = byteLength2;
     exports.toByteArray = toByteArray;
     exports.fromByteArray = fromByteArray;
@@ -7960,6 +8022,7 @@ var require_base64_js = __commonJS({
 var require_tiny_inflate = __commonJS({
   "../../node_modules/.pnpm/tiny-inflate@1.0.3/node_modules/tiny-inflate/index.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     var TINF_OK = 0;
     var TINF_DATA_ERROR = -3;
     function Tree() {
@@ -8204,6 +8267,7 @@ var require_tiny_inflate = __commonJS({
 var require_swap = __commonJS({
   "../../node_modules/.pnpm/unicode-trie@2.0.0/node_modules/unicode-trie/swap.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     var isBigEndian2 = new Uint8Array(new Uint32Array([305419896]).buffer)[0] === 18;
     var swap = (b, n, m) => {
       let i = b[n];
@@ -8232,6 +8296,7 @@ var require_swap = __commonJS({
 var require_unicode_trie = __commonJS({
   "../../node_modules/.pnpm/unicode-trie@2.0.0/node_modules/unicode-trie/index.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     var inflate = require_tiny_inflate();
     var { swap32LE } = require_swap();
     var SHIFT_1 = 6 + 5;
@@ -8328,6 +8393,7 @@ var import_base64_js, import_unicode_trie, $f4087201da764553$exports, $747425b43
 var init_module = __esm({
   "../../node_modules/.pnpm/unicode-properties@1.4.1/node_modules/unicode-properties/dist/module.mjs"() {
     "use strict";
+    init_esm_shims();
     import_base64_js = __toESM(require_base64_js(), 1);
     import_unicode_trie = __toESM(require_unicode_trie(), 1);
     $f4087201da764553$exports = {};
@@ -8355,6 +8421,7 @@ var init_module = __esm({
 var require_dfa = __commonJS({
   "../../node_modules/.pnpm/dfa@1.2.0/node_modules/dfa/index.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     var INITIAL_STATE = 1;
     var FAIL_STATE = 0;
     var StateMachine = class {
@@ -8425,6 +8492,7 @@ var require_dfa = __commonJS({
 var require_clone = __commonJS({
   "../../node_modules/.pnpm/clone@2.1.2/node_modules/clone/clone.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     var clone = (function() {
       "use strict";
       function _instanceof(obj, type) {
@@ -8622,6 +8690,7 @@ var require_clone = __commonJS({
 var require_streams = __commonJS({
   "../../node_modules/.pnpm/brotli@1.3.3/node_modules/brotli/dec/streams.js"(exports) {
     "use strict";
+    init_esm_shims();
     function BrotliInput(buffer) {
       this.buffer = buffer;
       this.pos = 0;
@@ -8655,6 +8724,7 @@ var require_streams = __commonJS({
 var require_bit_reader = __commonJS({
   "../../node_modules/.pnpm/brotli@1.3.3/node_modules/brotli/dec/bit_reader.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     var BROTLI_READ_SIZE = 4096;
     var BROTLI_IBUF_SIZE = 2 * BROTLI_READ_SIZE + 32;
     var BROTLI_IBUF_MASK = 2 * BROTLI_READ_SIZE - 1;
@@ -8758,6 +8828,7 @@ var require_bit_reader = __commonJS({
 var require_dictionary_data = __commonJS({
   "../../node_modules/.pnpm/brotli@1.3.3/node_modules/brotli/dec/dictionary-data.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.dictionary = new Uint8Array([
       116,
       105,
@@ -131554,6 +131625,7 @@ var require_dictionary_data = __commonJS({
 var require_dictionary = __commonJS({
   "../../node_modules/.pnpm/brotli@1.3.3/node_modules/brotli/dec/dictionary.js"(exports) {
     "use strict";
+    init_esm_shims();
     var data = require_dictionary_data();
     exports.init = function() {
       exports.dictionary = data.init();
@@ -131621,6 +131693,7 @@ var require_dictionary = __commonJS({
 var require_huffman = __commonJS({
   "../../node_modules/.pnpm/brotli@1.3.3/node_modules/brotli/dec/huffman.js"(exports) {
     "use strict";
+    init_esm_shims();
     function HuffmanCode(bits, value) {
       this.bits = bits;
       this.value = value;
@@ -131722,6 +131795,7 @@ var require_huffman = __commonJS({
 var require_context = __commonJS({
   "../../node_modules/.pnpm/brotli@1.3.3/node_modules/brotli/dec/context.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.lookup = new Uint8Array([
       /* CONTEXT_UTF8, last byte. */
       /* ASCII range. */
@@ -133550,6 +133624,7 @@ var require_context = __commonJS({
 var require_prefix = __commonJS({
   "../../node_modules/.pnpm/brotli@1.3.3/node_modules/brotli/dec/prefix.js"(exports) {
     "use strict";
+    init_esm_shims();
     function PrefixCodeRange(offset, nbits) {
       this.offset = offset;
       this.nbits = nbits;
@@ -133663,6 +133738,7 @@ var require_prefix = __commonJS({
 var require_transform = __commonJS({
   "../../node_modules/.pnpm/brotli@1.3.3/node_modules/brotli/dec/transform.js"(exports) {
     "use strict";
+    init_esm_shims();
     var BrotliDictionary = require_dictionary();
     var kIdentity = 0;
     var kOmitLast1 = 1;
@@ -133878,6 +133954,7 @@ var require_transform = __commonJS({
 var require_decode = __commonJS({
   "../../node_modules/.pnpm/brotli@1.3.3/node_modules/brotli/dec/decode.js"(exports) {
     "use strict";
+    init_esm_shims();
     var BrotliInput = require_streams().BrotliInput;
     var BrotliOutput = require_streams().BrotliOutput;
     var BrotliBitReader = require_bit_reader();
@@ -134731,6 +134808,7 @@ var require_decode = __commonJS({
 var require_decompress = __commonJS({
   "../../node_modules/.pnpm/brotli@1.3.3/node_modules/brotli/decompress.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     module.exports = require_decode().BrotliDecompressBuffer;
   }
 });
@@ -135716,6 +135794,7 @@ var import_fast_deep_equal, import_unicode_trie2, import_dfa, import_clone, impo
 var init_module2 = __esm({
   "../../node_modules/.pnpm/fontkit@2.0.4/node_modules/fontkit/dist/module.mjs"() {
     "use strict";
+    init_esm_shims();
     init_restructure();
     init_define_property();
     init_ts_decorate();
@@ -147062,6 +147141,7 @@ var init_module2 = __esm({
 var require_b64 = __commonJS({
   "../../node_modules/.pnpm/base64-js@0.0.8/node_modules/base64-js/lib/b64.js"(exports) {
     "use strict";
+    init_esm_shims();
     var lookup = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     (function(exports2) {
       "use strict";
@@ -147157,6 +147237,7 @@ var import_unicode_trie3, import_base64_js2, $557adaaeb0c7885f$exports, $1627905
 var init_module3 = __esm({
   "../../node_modules/.pnpm/linebreak@1.1.0/node_modules/linebreak/dist/module.mjs"() {
     "use strict";
+    init_esm_shims();
     import_unicode_trie3 = __toESM(require_unicode_trie(), 1);
     import_base64_js2 = __toESM(require_b64(), 1);
     $557adaaeb0c7885f$exports = {};
@@ -148632,6 +148713,7 @@ var require_tags = __commonJS({
 var require_lib = __commonJS({
   "../../node_modules/.pnpm/jpeg-exif@1.1.4/node_modules/jpeg-exif/lib/index.js"(exports) {
     "use strict";
+    init_esm_shims();
     var _fs = __require("fs");
     var _fs2 = _interopRequireDefault(_fs);
     function _interopRequireDefault(obj) {
@@ -148880,6 +148962,7 @@ var require_lib = __commonJS({
 var require_png_node = __commonJS({
   "../../node_modules/.pnpm/png-js@1.0.0/node_modules/png-js/png-node.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     var fs2 = __require("fs");
     var zlib2 = __require("zlib");
     module.exports = class PNG2 {
@@ -150096,6 +150179,7 @@ var import_crypto_js, import_jpeg_exif, import_png_js, PDFAbstractReference, PDF
 var init_pdfkit_es = __esm({
   "../../node_modules/.pnpm/pdfkit@0.17.2/node_modules/pdfkit/js/pdfkit.es.js"() {
     "use strict";
+    init_esm_shims();
     import_crypto_js = __toESM(require_crypto_js());
     init_module2();
     init_module3();
@@ -155218,6 +155302,7 @@ end`);
 var require_PDFDocument = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/PDFDocument.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _pdfkit = _interopRequireDefault((init_pdfkit_es(), __toCommonJS(pdfkit_es_exports)));
@@ -155371,6 +155456,7 @@ Images dictionary should contain dataURL entries (or local file paths in node.js
 var require_variableType = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/helpers/variableType.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.isEmptyObject = isEmptyObject;
     exports.isNumber = isNumber;
@@ -155406,6 +155492,7 @@ var require_variableType = __commonJS({
 var require_node = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/helpers/node.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.getNodeId = getNodeId;
     exports.getNodeMargin = getNodeMargin;
@@ -155511,6 +155598,7 @@ var require_node = __commonJS({
 var require_DocPreprocessor = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/DocPreprocessor.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _variableType = require_variableType();
@@ -155762,6 +155850,7 @@ var require_DocPreprocessor = __commonJS({
 var require_main = __commonJS({
   "../../node_modules/.pnpm/linebreak@1.1.0/node_modules/linebreak/dist/main.cjs"(exports, module) {
     "use strict";
+    init_esm_shims();
     var $kQ2hT$unicodetrie = require_unicode_trie();
     var $kQ2hT$base64js = require_b64();
     function $parcel$interopDefault3(a) {
@@ -157093,6 +157182,7 @@ var require_main = __commonJS({
 var require_StyleContextStack = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/StyleContextStack.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _variableType = require_variableType();
@@ -157270,6 +157360,7 @@ var require_StyleContextStack = __commonJS({
 var require_TextBreaker = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/TextBreaker.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _linebreak = _interopRequireDefault(require_main());
@@ -157421,6 +157512,7 @@ var require_TextBreaker = __commonJS({
 var require_TextInlines = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/TextInlines.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _TextBreaker = _interopRequireDefault(require_TextBreaker());
@@ -157617,6 +157709,7 @@ var require_TextInlines = __commonJS({
 var require_columnCalculator = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/columnCalculator.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _variableType = require_variableType();
@@ -157749,6 +157842,7 @@ var require_columnCalculator = __commonJS({
 var require_tableLayouts = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/tableLayouts.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.tableLayouts = exports.defaultTableLayout = void 0;
     var tableLayouts = exports.tableLayouts = {
@@ -157850,6 +157944,7 @@ var require_tableLayouts = __commonJS({
 var require_tools = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/helpers/tools.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.convertToDynamicContent = convertToDynamicContent;
     exports.offsetVector = offsetVector;
@@ -157902,6 +157997,7 @@ var require_tools = __commonJS({
 var require_qrEnc = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/qrEnc.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var VERSIONS = [null, [[10, 7, 17, 13], [1, 1, 1, 1], []], [[16, 10, 28, 22], [1, 1, 1, 1], [4, 16]], [[26, 15, 22, 18], [1, 1, 2, 2], [4, 20]], [[18, 20, 16, 26], [2, 1, 4, 2], [4, 24]], [[24, 26, 22, 18], [2, 1, 4, 4], [4, 28]], [[16, 18, 28, 24], [4, 2, 4, 4], [4, 32]], [[18, 20, 26, 18], [4, 2, 5, 6], [4, 20, 36]], [[22, 24, 26, 22], [4, 2, 6, 6], [4, 22, 40]], [[22, 30, 24, 20], [5, 2, 8, 8], [4, 24, 44]], [[26, 18, 28, 24], [5, 4, 8, 8], [4, 26, 48]], [[30, 20, 24, 28], [5, 4, 11, 8], [4, 28, 52]], [[22, 24, 28, 26], [8, 4, 11, 10], [4, 30, 56]], [[22, 26, 22, 24], [9, 4, 16, 12], [4, 32, 60]], [[24, 30, 24, 20], [9, 4, 16, 16], [4, 24, 44, 64]], [[24, 22, 24, 30], [10, 6, 18, 12], [4, 24, 46, 68]], [[28, 24, 30, 24], [10, 6, 16, 17], [4, 24, 48, 72]], [[28, 28, 28, 28], [11, 6, 19, 16], [4, 28, 52, 76]], [[26, 30, 28, 28], [13, 6, 21, 18], [4, 28, 54, 80]], [[26, 28, 26, 26], [14, 7, 25, 21], [4, 28, 56, 84]], [[26, 28, 28, 30], [16, 8, 25, 20], [4, 32, 60, 88]], [[26, 28, 30, 28], [17, 8, 25, 23], [4, 26, 48, 70, 92]], [[28, 28, 24, 30], [17, 9, 34, 23], [4, 24, 48, 72, 96]], [[28, 30, 30, 30], [18, 9, 30, 25], [4, 28, 52, 76, 100]], [[28, 30, 30, 30], [20, 10, 32, 27], [4, 26, 52, 78, 104]], [[28, 26, 30, 30], [21, 12, 35, 29], [4, 30, 56, 82, 108]], [[28, 28, 30, 28], [23, 12, 37, 34], [4, 28, 56, 84, 112]], [[28, 30, 30, 30], [25, 12, 40, 34], [4, 32, 60, 88, 116]], [[28, 30, 30, 30], [26, 13, 42, 35], [4, 24, 48, 72, 96, 120]], [[28, 30, 30, 30], [28, 14, 45, 38], [4, 28, 52, 76, 100, 124]], [[28, 30, 30, 30], [29, 15, 48, 40], [4, 24, 50, 76, 102, 128]], [[28, 30, 30, 30], [31, 16, 51, 43], [4, 28, 54, 80, 106, 132]], [[28, 30, 30, 30], [33, 17, 54, 45], [4, 32, 58, 84, 110, 136]], [[28, 30, 30, 30], [35, 18, 57, 48], [4, 28, 56, 84, 112, 140]], [[28, 30, 30, 30], [37, 19, 60, 51], [4, 32, 60, 88, 116, 144]], [[28, 30, 30, 30], [38, 19, 63, 53], [4, 28, 52, 76, 100, 124, 148]], [[28, 30, 30, 30], [40, 20, 66, 56], [4, 22, 48, 74, 100, 126, 152]], [[28, 30, 30, 30], [43, 21, 70, 59], [4, 26, 52, 78, 104, 130, 156]], [[28, 30, 30, 30], [45, 22, 74, 62], [4, 30, 56, 82, 108, 134, 160]], [[28, 30, 30, 30], [47, 24, 77, 65], [4, 24, 52, 80, 108, 136, 164]], [[28, 30, 30, 30], [49, 25, 81, 68], [4, 28, 56, 84, 112, 140, 168]]];
@@ -158403,6 +158499,7 @@ var require_qrEnc = __commonJS({
 var require_DocMeasure = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/DocMeasure.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _TextInlines = _interopRequireDefault(require_TextInlines());
@@ -159058,6 +159155,7 @@ Row data: ${(0, _node.stringifyNode)(rowData)}`);
 var require_DocumentContext = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/DocumentContext.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _variableType = require_variableType();
@@ -159551,6 +159649,7 @@ var require_DocumentContext = __commonJS({
 var require_ElementWriter = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/ElementWriter.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _variableType = require_variableType();
@@ -159926,6 +160025,7 @@ var require_ElementWriter = __commonJS({
 var require_standardPageSizes = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/standardPageSizes.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _default = exports.default = {
@@ -159987,6 +160087,7 @@ var require_standardPageSizes = __commonJS({
 var require_PageSize = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/PageSize.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.normalizePageMargin = normalizePageMargin;
     exports.normalizePageSize = normalizePageSize;
@@ -160065,6 +160166,7 @@ var require_PageSize = __commonJS({
 var require_PageElementWriter = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/PageElementWriter.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _ElementWriter = _interopRequireDefault(require_ElementWriter());
@@ -160301,6 +160403,7 @@ var require_PageElementWriter = __commonJS({
 var require_TableProcessor = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/TableProcessor.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _columnCalculator = _interopRequireDefault(require_columnCalculator());
@@ -160814,6 +160917,7 @@ var require_TableProcessor = __commonJS({
 var require_Line = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/Line.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var Line = class _Line {
@@ -160918,6 +161022,7 @@ var require_Line = __commonJS({
 var require_LayoutBuilder = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/LayoutBuilder.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _DocPreprocessor = _interopRequireDefault(require_DocPreprocessor());
@@ -162086,6 +162191,7 @@ var require_LayoutBuilder = __commonJS({
 var require_sax = __commonJS({
   "../../node_modules/.pnpm/sax@1.5.0/node_modules/sax/lib/sax.js"(exports) {
     "use strict";
+    init_esm_shims();
     (function(sax) {
       sax.parser = function(strict, opt) {
         return new SAXParser(strict, opt);
@@ -163593,6 +163699,7 @@ var require_sax = __commonJS({
 var require_xmldoc = __commonJS({
   "../../node_modules/.pnpm/xmldoc@2.0.3/node_modules/xmldoc/lib/xmldoc.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     (function() {
       var sax;
       if (typeof module !== "undefined" && module.exports && !global.xmldocAssumeBrowser) {
@@ -163875,6 +163982,7 @@ var require_xmldoc = __commonJS({
 var require_SVGMeasure = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/SVGMeasure.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _xmldoc = require_xmldoc();
@@ -163962,6 +164070,7 @@ var require_SVGMeasure = __commonJS({
 var require_TextDecorator = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/TextDecorator.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _variableType = require_variableType();
@@ -164118,6 +164227,7 @@ var require_TextDecorator = __commonJS({
 var require_source = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/3rd-party/svg-to-pdfkit/source.js"(exports, module) {
     "use strict";
+    init_esm_shims();
     var SVGtoPDF = function(doc, svg, x, y, options) {
       "use strict";
       const NamedColors = {
@@ -167598,6 +167708,7 @@ var require_source = __commonJS({
 var require_svg_to_pdfkit = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/3rd-party/svg-to-pdfkit.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _source = _interopRequireDefault(require_source());
@@ -167612,6 +167723,7 @@ var require_svg_to_pdfkit = __commonJS({
 var require_Renderer = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/Renderer.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _TextDecorator = _interopRequireDefault(require_TextDecorator());
@@ -168035,6 +168147,7 @@ var require_Renderer = __commonJS({
 var require_Printer = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/Printer.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _PDFDocument = _interopRequireDefault(require_PDFDocument());
@@ -168298,6 +168411,7 @@ var require_Printer = __commonJS({
 var require_virtual_fs = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/virtual-fs.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var normalizeFilename = (filename) => {
@@ -168360,6 +168474,7 @@ var require_virtual_fs = __commonJS({
 var require_URLResolver = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/URLResolver.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     async function fetchUrl(url, headers = {}) {
@@ -168419,6 +168534,7 @@ var require_URLResolver = __commonJS({
 var require_base = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/base.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _Printer = _interopRequireDefault(require_Printer());
@@ -168500,6 +168616,7 @@ var require_base = __commonJS({
 var require_OutputDocument = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/OutputDocument.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var OutputDocument = class {
@@ -168565,6 +168682,7 @@ var require_OutputDocument = __commonJS({
 var require_OutputDocumentServer = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/OutputDocumentServer.js"(exports) {
     "use strict";
+    init_esm_shims();
     exports.__esModule = true;
     exports.default = void 0;
     var _OutputDocument = _interopRequireDefault(require_OutputDocument());
@@ -168600,6 +168718,7 @@ var require_OutputDocumentServer = __commonJS({
 // ../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/index.js
 var require_js = __commonJS({
   "../../node_modules/.pnpm/pdfmake@0.3.6/node_modules/pdfmake/js/index.js"(exports, module) {
+    init_esm_shims();
     var pdfmakeBase = require_base().default;
     var OutputDocumentServer = require_OutputDocumentServer().default;
     var pdfmake = class extends pdfmakeBase {
@@ -168638,4 +168757,4 @@ crypto-js/mode-ctr-gladman.js:
 sax/lib/sax.js:
   (*! http://mths.be/fromcodepoint v0.1.0 by @mathias *)
 */
-//# sourceMappingURL=js-2HK454SQ.js.map
+//# sourceMappingURL=js-K7HDWQCZ.js.map

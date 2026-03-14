@@ -1,3 +1,4 @@
+import { createRequire } from 'module'; const require = createRequire(import.meta.url);
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -38,12 +39,29 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
+// ../../node_modules/.pnpm/tsup@8.5.1_postcss@8.5.8_typescript@5.9.3_yaml@2.8.2/node_modules/tsup/assets/esm_shims.js
+import path from "path";
+import { fileURLToPath } from "url";
+var getFilename, getDirname, __dirname, __filename;
+var init_esm_shims = __esm({
+  "../../node_modules/.pnpm/tsup@8.5.1_postcss@8.5.8_typescript@5.9.3_yaml@2.8.2/node_modules/tsup/assets/esm_shims.js"() {
+    "use strict";
+    getFilename = () => fileURLToPath(import.meta.url);
+    getDirname = () => path.dirname(getFilename());
+    __dirname = /* @__PURE__ */ getDirname();
+    __filename = /* @__PURE__ */ getFilename();
+  }
+});
+
 export {
   __require,
   __esm,
   __commonJS,
   __export,
   __toESM,
-  __toCommonJS
+  __toCommonJS,
+  __dirname,
+  __filename,
+  init_esm_shims
 };
-//# sourceMappingURL=chunk-PLDDJCW6.js.map
+//# sourceMappingURL=chunk-755GOCAW.js.map

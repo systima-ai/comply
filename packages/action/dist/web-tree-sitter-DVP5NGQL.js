@@ -1,6 +1,10 @@
-import "./chunk-PLDDJCW6.js";
+import { createRequire } from 'module'; const require = createRequire(import.meta.url);
+import {
+  init_esm_shims
+} from "./chunk-755GOCAW.js";
 
 // ../../node_modules/.pnpm/web-tree-sitter@0.26.6/node_modules/web-tree-sitter/web-tree-sitter.js
+init_esm_shims();
 var __defProp = Object.defineProperty;
 var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 var Edit = class {
@@ -3983,4 +3987,4 @@ export {
   Tree,
   TreeCursor
 };
-//# sourceMappingURL=web-tree-sitter-JCLLQYFU.js.map
+//# sourceMappingURL=web-tree-sitter-DVP5NGQL.js.map
