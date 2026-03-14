@@ -2,7 +2,7 @@ import fg from 'fast-glob'
 import ignore from 'ignore'
 import { readFile, stat } from 'node:fs/promises'
 import { resolve, relative, extname } from 'node:path'
-import type { ClassifiedFile, FileLanguage, FileManifest } from '../types.js'
+import type { ClassifiedFile, FileLanguage, FileManifest } from '../types'
 
 const MAX_FILES = 50_000
 

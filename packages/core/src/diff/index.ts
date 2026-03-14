@@ -1,5 +1,5 @@
 import { readFile, writeFile } from 'node:fs/promises'
-import type { ComplianceDiff, Finding, ScanResult } from '../types.js'
+import type { ComplianceDiff, Finding, ScanResult } from '../types'
 
 export async function loadBaseline(baselinePath: string): Promise<ScanResult | null> {
   try {

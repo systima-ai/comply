@@ -3,16 +3,17 @@ import type {
   ClassifiedFile,
   ComplianceResult,
   SystemDeclaration,
-} from '../types.js'
-import { checkArt5Prohibited } from './checks/art5-prohibited.js'
-import { checkArt12Logging } from './checks/art12-logging.js'
-import { checkArt50Transparency } from './checks/art50-transparency.js'
+} from '../types'
+import { checkArt5Prohibited } from './checks/art5-prohibited'
+import { checkArt12Logging } from './checks/art12-logging'
+import { checkArt50Transparency } from './checks/art50-transparency'
+import { checkArt11AiactDocs } from './checks/art11-aiact-docs'
 
 export async function runObligationChecks(
   system: SystemDeclaration,
   detections: AiUsageDetection[],
   allFiles: ClassifiedFile[],
-  _scanPath: string,
+  scanPath: string,
 ): Promise<ComplianceResult[]> {
   const results: ComplianceResult[] = []
 
@@ -22,6 +23,9 @@ export async function runObligationChecks(
   if (system.classification.riskLevel === 'high') {
     const loggingResults = await checkArt12Logging(system, detections, allFiles)
     results.push(...loggingResults)
+
+    const aiactDocsResults = await checkArt11AiactDocs(allFiles, scanPath)
+    results.push(...aiactDocsResults)
   }
 
   if (

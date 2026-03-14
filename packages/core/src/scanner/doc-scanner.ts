@@ -1,5 +1,5 @@
 import { readFile, access } from 'node:fs/promises'
-import type { SystemDocumentation, ComplianceResult, ArticleId } from '../types.js'
+import type { SystemDocumentation, ComplianceResult, ArticleId } from '../types'
 
 interface DocCheckConfig {
   articleId: ArticleId
@@ -99,12 +99,16 @@ export async function checkDocumentation(
   for (const check of DOC_CHECKS) {
     const docPath = documentation?.[check.docField]
 
+    const sectionsList = check.requiredSections ? check.requiredSections.join(', ') : ''
+    const scaffoldHint = `Run "comply scaffold" to generate a template, or "npx @systima/aiact-docs generate" for richer auto-generated content.`
+
     if (!docPath) {
       results.push({
         articleId: check.articleId,
         status: 'fail',
         title: check.title,
         detail: `No ${check.docField} document path declared in .systima.yml`,
+        remediation: `Add "${check.docField}: docs/${check.docField.replace(/([A-Z])/g, '-$1').toLowerCase()}.md" to the documentation section of this system in .systima.yml. ${scaffoldHint}`,
         referenceUrl: check.referenceUrl,
         phase: 1,
       })
@@ -118,6 +122,7 @@ export async function checkDocumentation(
         status: 'fail',
         title: check.title,
         detail: `Declared document not found: ${docPath}`,
+        remediation: `Create the file at ${docPath}${sectionsList ? ` with sections: ${sectionsList}` : ''}. ${scaffoldHint}`,
         filePaths: [docPath],
         referenceUrl: check.referenceUrl,
         phase: 1,
@@ -132,6 +137,7 @@ export async function checkDocumentation(
         status: 'warning',
         title: check.title,
         detail: `Document exists but is empty: ${docPath}`,
+        remediation: `Add content to ${docPath}${sectionsList ? `. Required sections: ${sectionsList}` : ''}. ${scaffoldHint}`,
         filePaths: [docPath],
         referenceUrl: check.referenceUrl,
         phase: 1,
@@ -147,6 +153,7 @@ export async function checkDocumentation(
           status: 'warning',
           title: check.title,
           detail: `Document missing required sections: ${missing.join(', ')}`,
+          remediation: `Add the following sections to ${docPath}: ${missing.join(', ')}.`,
           filePaths: [docPath],
           referenceUrl: check.referenceUrl,
           phase: 1,

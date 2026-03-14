@@ -3,7 +3,7 @@ import type {
   AiUsageDetection,
   ClassifiedFile,
   ComplianceResult,
-} from '../../types.js'
+} from '../../types'
 
 const AUDIT_LOG_PACKAGE = '@systima/aiact-audit-log'
 const AUDIT_LOG_MIDDLEWARE = '@systima/aiact-audit-log/ai-sdk/middleware'

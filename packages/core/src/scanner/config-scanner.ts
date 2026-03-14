@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises'
-import { loadFrameworks, findFrameworkByEnvPattern } from '../knowledge/frameworks.js'
-import type { AiUsageDetection, ClassifiedFile } from '../types.js'
+import { loadFrameworks, findFrameworkByEnvPattern } from '../knowledge/frameworks'
+import type { AiUsageDetection, ClassifiedFile } from '../types'
 
 async function scanEnvFile(file: ClassifiedFile): Promise<AiUsageDetection[]> {
   const detections: AiUsageDetection[] = []

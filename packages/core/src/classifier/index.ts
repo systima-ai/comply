@@ -5,7 +5,7 @@ import type {
   RiskTier,
   SystemDeclaration,
   UndeclaredSystem,
-} from '../types.js'
+} from '../types'
 import picomatch from 'picomatch'
 
 const BIOMETRIC_FRAMEWORKS = new Set([

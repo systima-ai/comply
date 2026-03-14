@@ -1,5 +1,5 @@
 import ts from 'typescript'
-import type { TracedSink } from '../types.js'
+import type { TracedSink } from '../types'
 
 function isConditionalBranch(node: ts.Node): boolean {
   let current: ts.Node | undefined = node.parent

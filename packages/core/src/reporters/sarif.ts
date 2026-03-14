@@ -1,5 +1,5 @@
 import type { Log as SarifLog, Result as SarifResult, ReportingDescriptor } from 'sarif'
-import type { ScanResult, Finding } from '../types.js'
+import type { ScanResult, Finding } from '../types'
 
 const SEVERITY_TO_SARIF_LEVEL: Record<string, SarifResult.level> = {
   critical: 'error',

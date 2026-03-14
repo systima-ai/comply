@@ -1,6 +1,6 @@
 {
   "name": "@systima/comply",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "EU AI Act compliance scanning for CI/CD pipelines",
   "license": "Apache-2.0",
   "author": "Systima Ltd. <hello@systima.ai>",
@@ -58,6 +58,7 @@
     "fast-glob": "^3.3.3",
     "ignore": "^7.0.5",
     "node-sarif-builder": "^4.0.0",
+    "pdfmake": "^0.3.6",
     "picomatch": "^4.0.3",
     "smol-toml": "^1.6.0",
     "typescript": "^5.9.3",
@@ -70,6 +71,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.13.0",
+    "@types/pdfmake": "^0.3.2",
     "@types/picomatch": "^3.0.2",
     "@types/sarif": "^2.1.7",
     "tsup": "^8.5.1",

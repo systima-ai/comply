@@ -1,7 +1,7 @@
 import ts from 'typescript'
 import { readFile } from 'node:fs/promises'
-import type { AiUsageDetection, CallChainTrace, TracedSink } from '../types.js'
-import { detectSink } from './sink-detector.js'
+import type { AiUsageDetection, CallChainTrace, TracedSink } from '../types'
+import { detectSink } from './sink-detector'
 
 interface VariableBinding {
   name: string

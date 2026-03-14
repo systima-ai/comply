@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises'
-import type { ArticleId, RiskTier, ObligationDefinition } from '../types.js'
-import { resolveKnowledgePath } from './resolve-path.js'
+import type { ArticleId, RiskTier, ObligationDefinition } from '../types'
+import { resolveKnowledgePath } from './resolve-path'
 
 interface RawArticle {
   id: ArticleId

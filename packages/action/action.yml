@@ -20,6 +20,9 @@ inputs:
   baseline-path:
     description: 'Path to baseline file for diff comparison'
     default: '.systima-baseline.json'
+  badge-path:
+    description: 'Path to write compliance badge SVG (e.g. .github/badges/comply.svg). Leave empty to skip.'
+    default: ''
 outputs:
   compliance-score:
     description: 'Fraction of applicable obligations met (0.0-1.0)'
@@ -29,6 +32,8 @@ outputs:
     description: 'Total number of findings'
   classification-changed:
     description: 'Whether any system classification changed'
+  badge-url:
+    description: 'shields.io badge URL for the current compliance score'
 runs:
   using: 'node20'
   main: 'dist/index.js'

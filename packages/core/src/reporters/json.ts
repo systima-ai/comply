@@ -1,4 +1,4 @@
-import type { ScanResult, ComplianceDiff } from '../types.js'
+import type { ScanResult, ComplianceDiff } from '../types'
 
 export interface JsonReport {
   version: string

@@ -18,6 +18,7 @@ export default defineConfig([
       'web-tree-sitter',
       'tree-sitter-python',
       'node-sarif-builder',
+      'pdfmake',
     ],
     noExternal: [],
   },

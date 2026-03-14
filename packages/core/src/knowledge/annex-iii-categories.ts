@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises'
-import type { AnnexIIICategory } from '../types.js'
-import { resolveKnowledgePath } from './resolve-path.js'
+import type { AnnexIIICategory } from '../types'
+import { resolveKnowledgePath } from './resolve-path'
 
 export interface AnnexIIISubcategory {
   ref: AnnexIIICategory

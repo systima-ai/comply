@@ -1,4 +1,4 @@
-import type { ScanResult } from '../types.js'
+import type { ScanResult } from '../types'
 
 interface BadgeConfig {
   label: string

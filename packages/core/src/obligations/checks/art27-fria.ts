@@ -3,7 +3,7 @@ import type {
   ComplianceResult,
   SystemDeclaration,
   OperatorRole,
-} from '../../types.js'
+} from '../../types'
 
 const FRIA_REQUIRED_SECTIONS = [
   'processes',

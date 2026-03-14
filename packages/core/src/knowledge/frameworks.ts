@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises'
-import type { FrameworkPattern, FrameworkCategory, RiskTier } from '../types.js'
-import { resolveKnowledgePath } from './resolve-path.js'
+import type { FrameworkPattern, FrameworkCategory, RiskTier } from '../types'
+import { resolveKnowledgePath } from './resolve-path'
 
 interface RawFramework {
   id: string
