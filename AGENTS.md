@@ -9,7 +9,8 @@ This document is a guide for AI agents contributing to the Systima Comply projec
 - **Package manager**: pnpm (never npm or yarn).
 - **Monorepo structure**:
   - `packages/core/`: the `@systima/comply` npm package (scanner engine + CLI)
-  - `packages/action/`: GitHub Action wrapper (`@systima/comply-action`)
+  - `packages/action/`: GitHub Action wrapper (`@systima/comply-action`); source only, `dist/` must be committed
+  - `action.yml`: root-level GitHub Action definition (points to `packages/action/dist/index.js`); GitHub Actions requires this at the repo root
   - `knowledge/`: regulatory knowledge base as JSON (EU AI Act articles, Annex III categories, AI framework patterns)
   - `examples/`: reference `.systima.yml` configurations
   - `test/`: test fixtures (sample codebases for integration testing); lives inside `packages/core/test/`
@@ -35,7 +36,7 @@ pnpm --filter @systima/comply dev        # watch mode build
 ## Code style
 
 - **TypeScript strict mode**. No `any`. No `unknown` as a lazy escape hatch. No aggressive type-casting (`as SomeType`).
-- **ESM first**. All source files use `.js` extensions in import paths (TypeScript resolves these). The package ships both ESM and CJS via tsup.
+- **ESM first**. Import paths use **no file extensions** (e.g. `from './scanner/index'` not `from './scanner/index.js'`). The tsup bundler resolves `.ts` files from extensionless paths via `moduleResolution: "bundler"` in `tsconfig.base.json`. The package ships both ESM and CJS via tsup.
 - **No comments in code**. The code should be self-documenting through clear naming. Preserve existing comments.
 - **British English** in all communication and content (e.g. "colour" not "color", "analyse" not "analyze"). Variable names in code may use American English where framework APIs expect it.
 - **Naming**: descriptive, full words. Functions as verbs, variables as nouns. Files in kebab-case. Types/interfaces in PascalCase.
@@ -68,6 +69,29 @@ The scanner executes a five-stage pipeline:
 | `packages/core/src/knowledge/` | TypeScript loaders for the JSON knowledge bases |
 | `knowledge/frameworks/` | AI framework detection patterns (37+ frameworks) |
 | `knowledge/eu-ai-act/` | EU AI Act articles, Annex III categories, obligation mappings, deadlines, changelog |
+
+## CLI commands
+
+| Command | Description |
+|---------|-------------|
+| `comply scan` | Scan codebase for EU AI Act compliance |
+| `comply init` | Interactively create a `.systima.yml` config (or `--template` for non-interactive) |
+| `comply scaffold` | Generate template documentation files for all declared systems |
+| `comply doctor` | Validate `.systima.yml` config without running a full scan |
+| `comply baseline` | Save current scan as `.systima-baseline.json` for future diffs |
+| `comply diff` | Compare current scan against a saved baseline |
+| `comply report` | Generate a compliance report (Markdown, JSON, or PDF via `--format pdf`) |
+
+## `.systima.yml` schema
+
+Key fields to know when modifying the Zod schema (`packages/core/src/config/schema.ts`):
+
+- `version`: always `"1"` (literal)
+- `organisation.operator_role`: `provider` / `deployer` / `both`
+- `systems[].classification.risk_level`: `unacceptable` / `high` / `limited` / `minimal`
+- `systems[].classification.domain`: declares the system's purpose. Non-regulated domains (`general_purpose`, `customer_support`, `internal_tooling`, `content_generation`) cause call-chain findings to be advisory. Regulated domains (`creditworthiness`, `employment`, `insurance`, `education`, `legal`, `law_enforcement`, `migration`, `critical_infrastructure`, `biometric`, `emergency_services`, `public_benefits`, `election`) cause call-chain findings to be critical. Defaults to `general_purpose`.
+- `systems[].classification.annex_iii_category`: optional Annex III subcategory (e.g. `5b` for creditworthiness)
+- `systems[].documentation.*`: paths relative to the config file; resolved to absolute paths by the loader
 
 ## Risk-tiered reporting
 
@@ -127,6 +151,12 @@ Add an entry to `knowledge/frameworks/ai-frameworks.json` with:
 - `pdfmake` is a runtime dependency for PDF report generation. It is marked as external in tsup (not bundled).
 - All other dependencies are pure JavaScript/TypeScript with no native compilation.
 - The GitHub Action (`action.yml` at repo root) is a self-contained ESM bundle with a `createRequire` banner for CJS compatibility. It is built via `pnpm --filter @systima/comply-action build` and the `dist/` must be committed to git. The `action.yml` at the repo root points to `packages/action/dist/index.js`.
+
+## Caveats
+
+- **`packages/core/.gitignore`**: contains `/knowledge/` (with leading slash). This ignores only the copied JSON directory at `packages/core/knowledge/` (created by the `prebuild` script). Without the leading slash, it would also ignore `packages/core/src/knowledge/` (the TypeScript source files), which caused a CI build failure in v0.2.0. Always use `/knowledge/` not `knowledge/`.
+- **Action `dist/` must be committed**: GitHub Actions loads `packages/action/dist/index.js` at runtime. The root `.gitignore` has `dist/` but `!packages/action/dist/` excludes the action dist from that rule. After rebuilding the action (`pnpm --filter @systima/comply-action build`), always commit the updated `packages/action/dist/` files and force-update the `v1` tag.
+- **Knowledge path resolution**: the core package uses `packages/core/src/knowledge/resolve-path.ts` to find the knowledge JSON files. It tries multiple candidate paths relative to `__dirname` so it works both in the monorepo and when installed from npm. If you move knowledge files, update this resolver.
 
 ## Constraints
 
