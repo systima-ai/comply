@@ -1,10 +1,6 @@
 import { readFile } from 'node:fs/promises'
-import { resolve, dirname } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import type { FrameworkPattern, FrameworkCategory, RiskTier } from '../types.js'
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
-const FRAMEWORKS_PATH = resolve(__dirname, '../../../../knowledge/frameworks/ai-frameworks.json')
+import { resolveKnowledgePath } from './resolve-path.js'
 
 interface RawFramework {
   id: string
@@ -22,7 +18,8 @@ let cachedFrameworks: FrameworkPattern[] | null = null
 export async function loadFrameworks(): Promise<FrameworkPattern[]> {
   if (cachedFrameworks) return cachedFrameworks
 
-  const raw = await readFile(FRAMEWORKS_PATH, 'utf-8')
+  const frameworksPath = await resolveKnowledgePath('frameworks/ai-frameworks.json')
+  const raw = await readFile(frameworksPath, 'utf-8')
   const data = JSON.parse(raw) as { frameworks: RawFramework[] }
 
   cachedFrameworks = data.frameworks.map((fw): FrameworkPattern => ({
