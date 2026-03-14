@@ -20,9 +20,5 @@ export default defineConfig([
       'node-sarif-builder',
       'pdfmake',
     ],
-    noExternal: [],
-    esbuildOptions(options) {
-      options.resolveExtensions = ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs', '.json']
-    },
   },
 ])
