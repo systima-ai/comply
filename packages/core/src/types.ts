@@ -39,6 +39,39 @@ export type FrameworkCategory =
   | 'nlp_embeddings'
   | 'ai_infrastructure'
 
+export type SystemDomain =
+  | 'general_purpose'
+  | 'customer_support'
+  | 'internal_tooling'
+  | 'content_generation'
+  | 'creditworthiness'
+  | 'employment'
+  | 'insurance'
+  | 'education'
+  | 'legal'
+  | 'law_enforcement'
+  | 'migration'
+  | 'critical_infrastructure'
+  | 'biometric'
+  | 'emergency_services'
+  | 'public_benefits'
+  | 'election'
+
+export const REGULATED_DOMAINS: Set<SystemDomain> = new Set([
+  'creditworthiness',
+  'employment',
+  'insurance',
+  'education',
+  'legal',
+  'law_enforcement',
+  'migration',
+  'critical_infrastructure',
+  'biometric',
+  'emergency_services',
+  'public_benefits',
+  'election',
+])
+
 export type AnnexIIICategory =
   | '1a' | '1b' | '1c'
   | '2'
@@ -102,6 +135,7 @@ export interface SystemScope {
 
 export interface SystemClassification {
   riskLevel: RiskTier
+  domain?: SystemDomain
   annexIiiCategory?: AnnexIIICategory
   rationale?: string
 }
@@ -215,8 +249,10 @@ export interface SystemScanResult {
   classification: SystemClassification
   detections: AiUsageDetection[]
   complianceResults: ComplianceResult[]
+  advisoryResults: ComplianceResult[]
   classificationMismatches: ClassificationMismatch[]
   findings: Finding[]
+  advisoryFindings: Finding[]
   complianceScore: number
 }
 

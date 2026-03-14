@@ -255234,8 +255234,27 @@ var systemScopeSchema = external_exports.object({
   paths: external_exports.array(external_exports.string()).min(1, "At least one scope path is required"),
   exclude: external_exports.array(external_exports.string()).optional()
 });
+var systemDomainSchema = external_exports.enum([
+  "general_purpose",
+  "customer_support",
+  "internal_tooling",
+  "content_generation",
+  "creditworthiness",
+  "employment",
+  "insurance",
+  "education",
+  "legal",
+  "law_enforcement",
+  "migration",
+  "critical_infrastructure",
+  "biometric",
+  "emergency_services",
+  "public_benefits",
+  "election"
+]);
 var systemClassificationSchema = external_exports.object({
   risk_level: riskTierSchema,
+  domain: systemDomainSchema.optional().default("general_purpose"),
   annex_iii_category: annexIiiCategorySchema.optional(),
   rationale: external_exports.string().optional()
 });
@@ -255299,6 +255318,7 @@ function transformConfig(raw, configDir) {
     },
     classification: {
       riskLevel: sys.classification.risk_level,
+      domain: sys.classification.domain,
       annexIiiCategory: sys.classification.annex_iii_category,
       rationale: sys.classification.rationale
     },
@@ -256275,6 +256295,42 @@ async function runObligationChecks(system, detections, allFiles, scanPath) {
   }
   return results;
 }
+var REGULATED_DOMAINS = /* @__PURE__ */ new Set([
+  "creditworthiness",
+  "employment",
+  "insurance",
+  "education",
+  "legal",
+  "law_enforcement",
+  "migration",
+  "critical_infrastructure",
+  "biometric",
+  "emergency_services",
+  "public_benefits",
+  "election"
+]);
+var HIGH_RISK_ONLY_ARTICLES = /* @__PURE__ */ new Set([
+  "art9",
+  "art10",
+  "art11",
+  "art12",
+  "art13",
+  "art14",
+  "art15",
+  "art25",
+  "art27",
+  "art72"
+]);
+var UNIVERSAL_ARTICLES = /* @__PURE__ */ new Set([
+  "art5",
+  "art50"
+]);
+function isObligationApplicable(articleId, riskLevel) {
+  if (UNIVERSAL_ARTICLES.has(articleId)) return true;
+  if (HIGH_RISK_ONLY_ARTICLES.has(articleId) && riskLevel === "high") return true;
+  if (HIGH_RISK_ONLY_ARTICLES.has(articleId) && riskLevel === "unacceptable") return true;
+  return false;
+}
 function matchesScope(relativePath, scopePaths, excludePaths) {
   const included = scopePaths.some((pattern) => (0, import_picomatch2.default)(pattern)(relativePath));
   if (!included) return false;
@@ -256366,6 +256422,10 @@ function computeSummary(systems, globalFindings, allDetections) {
     classificationChanged: false
   };
 }
+function isRegulatedDomain(systemDecl) {
+  const domain = systemDecl.classification.domain ?? "general_purpose";
+  return REGULATED_DOMAINS.has(domain);
+}
 async function scan(options) {
   const { config, discoveryMode, configPath } = await loadConfig(
     options.path,
@@ -256450,20 +256510,44 @@ async function scan(options) {
         options.path
       );
       const allResults = [...docResults, ...obligationResults];
+      const riskLevel = systemDecl.classification.riskLevel;
+      const regulated = isRegulatedDomain(systemDecl);
+      const applicableResults = allResults.filter(
+        (r) => isObligationApplicable(r.articleId, riskLevel)
+      );
+      const advisoryResults = allResults.filter(
+        (r) => !isObligationApplicable(r.articleId, riskLevel)
+      );
       const findings = [];
+      const advisoryFindings = [];
+      const callChainIsHighSeverity = riskLevel === "high" || regulated;
       for (const mismatch of classificationResult.mismatches) {
-        findings.push({
-          id: `classification-mismatch-${systemDecl.id}-${mismatch.frameworkId}`,
-          severity: "critical",
-          articleId: "art6",
-          systemId: systemDecl.id,
-          title: "Classification mismatch detected",
-          message: mismatch.reason,
-          filePath: mismatch.filePaths[0],
-          referenceUrl: "https://artificialintelligenceact.eu/article/6/"
-        });
+        const isCallChain = mismatch.frameworkId !== "domain-analysis" && mismatch.reason.startsWith("Call-chain analysis:");
+        if (isCallChain && !callChainIsHighSeverity) {
+          advisoryFindings.push({
+            id: `call-chain-advisory-${systemDecl.id}-${mismatch.filePaths[0] ?? ""}:${mismatch.reason.split(":").pop()?.trim() ?? ""}`,
+            severity: "info",
+            articleId: "art6",
+            systemId: systemDecl.id,
+            title: "Code pattern detected (advisory)",
+            message: mismatch.reason,
+            filePath: mismatch.filePaths[0],
+            referenceUrl: "https://artificialintelligenceact.eu/article/6/"
+          });
+        } else {
+          findings.push({
+            id: `classification-mismatch-${systemDecl.id}-${mismatch.frameworkId}`,
+            severity: callChainIsHighSeverity || !isCallChain ? "critical" : "info",
+            articleId: "art6",
+            systemId: systemDecl.id,
+            title: isCallChain && !callChainIsHighSeverity ? "Code pattern detected (advisory)" : "Classification mismatch detected",
+            message: mismatch.reason,
+            filePath: mismatch.filePaths[0],
+            referenceUrl: "https://artificialintelligenceact.eu/article/6/"
+          });
+        }
       }
-      for (const result of allResults) {
+      for (const result of applicableResults) {
         if (result.status === "fail") {
           findings.push({
             id: `${result.articleId}-fail-${systemDecl.id}`,
@@ -256490,15 +256574,32 @@ async function scan(options) {
           });
         }
       }
+      for (const result of advisoryResults) {
+        if (result.status === "fail" || result.status === "warning") {
+          advisoryFindings.push({
+            id: `${result.articleId}-advisory-${systemDecl.id}`,
+            severity: "info",
+            articleId: result.articleId,
+            systemId: systemDecl.id,
+            title: result.title,
+            message: result.detail,
+            suggestion: result.remediation,
+            filePath: result.filePaths?.[0],
+            referenceUrl: result.referenceUrl
+          });
+        }
+      }
       systems.push({
         systemId: systemDecl.id,
         systemName: systemDecl.name,
         classification: systemDecl.classification,
         detections: systemDetections,
-        complianceResults: allResults,
+        complianceResults: applicableResults,
+        advisoryResults,
         classificationMismatches: classificationResult.mismatches,
         findings,
-        complianceScore: computeComplianceScore(allResults)
+        advisoryFindings,
+        complianceScore: computeComplianceScore(applicableResults)
       });
     }
   }
@@ -256627,11 +256728,10 @@ var SEVERITY_ICONS = {
   warning: "\u26A0\uFE0F",
   info: "\u2139\uFE0F"
 };
-function formatObligationTable(system) {
-  const results = system.complianceResults;
+function formatObligationTable(title, results) {
   if (results.length === 0) return "";
   const lines = [
-    `### Obligation Status: ${system.systemName} (${system.classification.riskLevel}-risk)`,
+    `### ${title}`,
     "",
     "| Article | Obligation | Status | Detail |",
     "|---------|-----------|--------|--------|"
@@ -256645,7 +256745,7 @@ function formatObligationTable(system) {
   }
   return lines.join("\n");
 }
-function formatFindings(result) {
+function formatCriticalFindings(result) {
   const criticalFindings = result.systems.flatMap(
     (s) => s.findings.filter((f) => f.severity === "critical")
   );
@@ -256671,6 +256771,50 @@ function formatFindings(result) {
     }
     lines.push("");
   }
+  return lines.join("\n");
+}
+function formatAdvisorySection(system) {
+  const advisoryCount = system.advisoryFindings.length + system.advisoryResults.filter((r) => r.status === "fail" || r.status === "warning").length;
+  if (advisoryCount === 0) return "";
+  const lines = [
+    "",
+    `<details><summary>\u2139\uFE0F ${advisoryCount} advisory note(s) from code analysis (not required for ${system.classification.riskLevel}-risk)</summary>`,
+    ""
+  ];
+  if (system.advisoryFindings.length > 0) {
+    const callChainNotes = system.advisoryFindings.filter((f) => f.message.startsWith("Call-chain"));
+    const otherNotes = system.advisoryFindings.filter((f) => !f.message.startsWith("Call-chain"));
+    if (callChainNotes.length > 0) {
+      lines.push("**Code patterns detected** that would be significant if this system operated in a regulated domain:");
+      lines.push("");
+      for (const note of callChainNotes) {
+        lines.push(`- ${note.message}`);
+      }
+      lines.push("");
+      lines.push(`These are informational because the system is declared as \`${system.classification.domain ?? "general_purpose"}\`.`);
+      lines.push("If the system's domain changes, run `comply scan` again to reassess.");
+      lines.push("");
+    }
+    if (otherNotes.length > 0) {
+      for (const note of otherNotes) {
+        lines.push(`- **${note.title}**: ${note.message}`);
+      }
+      lines.push("");
+    }
+  }
+  const failedAdvisory = system.advisoryResults.filter((r) => r.status === "fail" || r.status === "warning");
+  if (failedAdvisory.length > 0) {
+    lines.push("**If this system is reclassified as high-risk**, the following would additionally apply:");
+    lines.push("");
+    lines.push("| Article | What You'd Need | Status |");
+    lines.push("|---------|----------------|--------|");
+    for (const result of failedAdvisory) {
+      const icon = STATUS_ICONS[result.status] ?? "\u2753";
+      lines.push(`| ${result.articleId.replace("art", "Art. ")} | ${result.title} | ${icon} |`);
+    }
+    lines.push("");
+  }
+  lines.push("</details>");
   return lines.join("\n");
 }
 function formatDiffSection(diff) {
@@ -256719,21 +256863,27 @@ function formatGitHubPRComment(result, diff) {
     "## \u{1F6E1}\uFE0F Systima Comply \u2014 EU AI Act Compliance Scan",
     "",
     "### Summary",
-    `${summaryStatus} ${summary2.totalSystems} system(s) scanned | ${summary2.totalFindings} finding(s) | ${passedObligations}/${totalObligations} obligations met`,
+    `${summaryStatus} ${summary2.totalSystems} system(s) scanned | ${passedObligations}/${totalObligations} obligations met | Score: ${Math.round(summary2.overallComplianceScore * 100)}%`,
     ""
   ];
-  const findingsSection = formatFindings(result);
-  if (findingsSection) {
-    lines.push(findingsSection);
+  const criticalSection = formatCriticalFindings(result);
+  if (criticalSection) {
+    lines.push(criticalSection);
   }
   const diffSection = formatDiffSection(diff);
   if (diffSection) {
     lines.push(diffSection);
   }
   for (const system of result.systems) {
-    const table = formatObligationTable(system);
+    const tableTitle = `Your Obligations: ${system.systemName} (${system.classification.riskLevel}-risk${system.classification.domain ? `, ${system.classification.domain}` : ""})`;
+    const table = formatObligationTable(tableTitle, system.complianceResults);
     if (table) {
       lines.push(table);
+      lines.push("");
+    }
+    const advisory = formatAdvisorySection(system);
+    if (advisory) {
+      lines.push(advisory);
       lines.push("");
     }
   }

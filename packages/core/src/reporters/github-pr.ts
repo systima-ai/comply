@@ -1,4 +1,4 @@
-import type { ScanResult, SystemScanResult, ComplianceDiff } from '../types'
+import type { ScanResult, SystemScanResult, ComplianceDiff, ComplianceResult } from '../types'
 
 const STATUS_ICONS: Record<string, string> = {
   pass: '✅',
@@ -14,12 +14,11 @@ const SEVERITY_ICONS: Record<string, string> = {
   info: 'ℹ️',
 }
 
-function formatObligationTable(system: SystemScanResult): string {
-  const results = system.complianceResults
+function formatObligationTable(title: string, results: ComplianceResult[]): string {
   if (results.length === 0) return ''
 
   const lines: string[] = [
-    `### Obligation Status: ${system.systemName} (${system.classification.riskLevel}-risk)`,
+    `### ${title}`,
     '',
     '| Article | Obligation | Status | Detail |',
     '|---------|-----------|--------|--------|',
@@ -38,7 +37,7 @@ function formatObligationTable(system: SystemScanResult): string {
   return lines.join('\n')
 }
 
-function formatFindings(result: ScanResult): string {
+function formatCriticalFindings(result: ScanResult): string {
   const criticalFindings = result.systems.flatMap((s) =>
     s.findings.filter((f) => f.severity === 'critical'),
   )
@@ -67,6 +66,58 @@ function formatFindings(result: ScanResult): string {
     }
     lines.push('')
   }
+
+  return lines.join('\n')
+}
+
+function formatAdvisorySection(system: SystemScanResult): string {
+  const advisoryCount = system.advisoryFindings.length + system.advisoryResults.filter((r) => r.status === 'fail' || r.status === 'warning').length
+  if (advisoryCount === 0) return ''
+
+  const lines: string[] = [
+    '',
+    `<details><summary>ℹ️ ${advisoryCount} advisory note(s) from code analysis (not required for ${system.classification.riskLevel}-risk)</summary>`,
+    '',
+  ]
+
+  if (system.advisoryFindings.length > 0) {
+    const callChainNotes = system.advisoryFindings.filter((f) => f.message.startsWith('Call-chain'))
+    const otherNotes = system.advisoryFindings.filter((f) => !f.message.startsWith('Call-chain'))
+
+    if (callChainNotes.length > 0) {
+      lines.push('**Code patterns detected** that would be significant if this system operated in a regulated domain:')
+      lines.push('')
+      for (const note of callChainNotes) {
+        lines.push(`- ${note.message}`)
+      }
+      lines.push('')
+      lines.push(`These are informational because the system is declared as \`${system.classification.domain ?? 'general_purpose'}\`.`)
+      lines.push('If the system\'s domain changes, run `comply scan` again to reassess.')
+      lines.push('')
+    }
+
+    if (otherNotes.length > 0) {
+      for (const note of otherNotes) {
+        lines.push(`- **${note.title}**: ${note.message}`)
+      }
+      lines.push('')
+    }
+  }
+
+  const failedAdvisory = system.advisoryResults.filter((r) => r.status === 'fail' || r.status === 'warning')
+  if (failedAdvisory.length > 0) {
+    lines.push('**If this system is reclassified as high-risk**, the following would additionally apply:')
+    lines.push('')
+    lines.push('| Article | What You\'d Need | Status |')
+    lines.push('|---------|----------------|--------|')
+    for (const result of failedAdvisory) {
+      const icon = STATUS_ICONS[result.status] ?? '❓'
+      lines.push(`| ${result.articleId.replace('art', 'Art. ')} | ${result.title} | ${icon} |`)
+    }
+    lines.push('')
+  }
+
+  lines.push('</details>')
 
   return lines.join('\n')
 }
@@ -134,13 +185,13 @@ export function formatGitHubPRComment(
     '## 🛡️ Systima Comply — EU AI Act Compliance Scan',
     '',
     '### Summary',
-    `${summaryStatus} ${summary.totalSystems} system(s) scanned | ${summary.totalFindings} finding(s) | ${passedObligations}/${totalObligations} obligations met`,
+    `${summaryStatus} ${summary.totalSystems} system(s) scanned | ${passedObligations}/${totalObligations} obligations met | Score: ${Math.round(summary.overallComplianceScore * 100)}%`,
     '',
   ]
 
-  const findingsSection = formatFindings(result)
-  if (findingsSection) {
-    lines.push(findingsSection)
+  const criticalSection = formatCriticalFindings(result)
+  if (criticalSection) {
+    lines.push(criticalSection)
   }
 
   const diffSection = formatDiffSection(diff)
@@ -149,9 +200,16 @@ export function formatGitHubPRComment(
   }
 
   for (const system of result.systems) {
-    const table = formatObligationTable(system)
+    const tableTitle = `Your Obligations: ${system.systemName} (${system.classification.riskLevel}-risk${system.classification.domain ? `, ${system.classification.domain}` : ''})`
+    const table = formatObligationTable(tableTitle, system.complianceResults)
     if (table) {
       lines.push(table)
+      lines.push('')
+    }
+
+    const advisory = formatAdvisorySection(system)
+    if (advisory) {
+      lines.push(advisory)
       lines.push('')
     }
   }

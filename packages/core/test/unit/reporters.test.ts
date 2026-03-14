@@ -48,6 +48,7 @@ describe('GitHub PR comment reporter', () => {
         classification: { riskLevel: 'high' },
         detections: [],
         complianceResults: [],
+        advisoryResults: [],
         classificationMismatches: [],
         findings: [{
           id: 'test-finding',
@@ -57,6 +58,7 @@ describe('GitHub PR comment reporter', () => {
           articleId: 'art6',
           systemId: 'test',
         }],
+        advisoryFindings: [],
         complianceScore: 0,
       }],
       summary: {

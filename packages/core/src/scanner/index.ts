@@ -11,18 +11,36 @@ import { detectDomainFromFilePaths, suggestAnnexIIICategory } from '../classifie
 import { runObligationChecks } from '../obligations/index'
 import type {
   AiUsageDetection,
+  ArticleId,
   CallChainTrace,
   ClassifiedFile,
   ComplianceResult,
   Finding,
+  RiskTier,
   ScanOptions,
   ScanResult,
   ScanSummary,
+  SystemDeclaration,
   SystemScanResult,
   FindingSeverity,
-  RiskTier,
 } from '../types'
+import { REGULATED_DOMAINS } from '../types'
 import picomatch from 'picomatch'
+
+const HIGH_RISK_ONLY_ARTICLES: Set<ArticleId> = new Set([
+  'art9', 'art10', 'art11', 'art12', 'art13', 'art14', 'art15', 'art25', 'art27', 'art72',
+])
+
+const UNIVERSAL_ARTICLES: Set<ArticleId> = new Set([
+  'art5', 'art50',
+])
+
+function isObligationApplicable(articleId: ArticleId, riskLevel: RiskTier): boolean {
+  if (UNIVERSAL_ARTICLES.has(articleId)) return true
+  if (HIGH_RISK_ONLY_ARTICLES.has(articleId) && riskLevel === 'high') return true
+  if (HIGH_RISK_ONLY_ARTICLES.has(articleId) && riskLevel === 'unacceptable') return true
+  return false
+}
 
 function matchesScope(
   relativePath: string,
@@ -148,6 +166,11 @@ function computeSummary(
   }
 }
 
+function isRegulatedDomain(systemDecl: SystemDeclaration): boolean {
+  const domain = systemDecl.classification.domain ?? 'general_purpose'
+  return REGULATED_DOMAINS.has(domain)
+}
+
 export async function scan(options: ScanOptions): Promise<ScanResult> {
   const { config, discoveryMode, configPath } = await loadConfig(
     options.path,
@@ -245,23 +268,52 @@ export async function scan(options: ScanOptions): Promise<ScanResult> {
       )
 
       const allResults: ComplianceResult[] = [...docResults, ...obligationResults]
+      const riskLevel = systemDecl.classification.riskLevel
+      const regulated = isRegulatedDomain(systemDecl)
+
+      const applicableResults = allResults.filter((r) =>
+        isObligationApplicable(r.articleId, riskLevel),
+      )
+      const advisoryResults = allResults.filter((r) =>
+        !isObligationApplicable(r.articleId, riskLevel),
+      )
 
       const findings: Finding[] = []
+      const advisoryFindings: Finding[] = []
 
+      const callChainIsHighSeverity = riskLevel === 'high' || regulated
       for (const mismatch of classificationResult.mismatches) {
-        findings.push({
-          id: `classification-mismatch-${systemDecl.id}-${mismatch.frameworkId}`,
-          severity: 'critical',
-          articleId: 'art6',
-          systemId: systemDecl.id,
-          title: 'Classification mismatch detected',
-          message: mismatch.reason,
-          filePath: mismatch.filePaths[0],
-          referenceUrl: 'https://artificialintelligenceact.eu/article/6/',
-        })
+        const isCallChain = mismatch.frameworkId !== 'domain-analysis'
+          && mismatch.reason.startsWith('Call-chain analysis:')
+
+        if (isCallChain && !callChainIsHighSeverity) {
+          advisoryFindings.push({
+            id: `call-chain-advisory-${systemDecl.id}-${mismatch.filePaths[0] ?? ''}:${mismatch.reason.split(':').pop()?.trim() ?? ''}`,
+            severity: 'info',
+            articleId: 'art6',
+            systemId: systemDecl.id,
+            title: 'Code pattern detected (advisory)',
+            message: mismatch.reason,
+            filePath: mismatch.filePaths[0],
+            referenceUrl: 'https://artificialintelligenceact.eu/article/6/',
+          })
+        } else {
+          findings.push({
+            id: `classification-mismatch-${systemDecl.id}-${mismatch.frameworkId}`,
+            severity: callChainIsHighSeverity || !isCallChain ? 'critical' : 'info',
+            articleId: 'art6',
+            systemId: systemDecl.id,
+            title: isCallChain && !callChainIsHighSeverity
+              ? 'Code pattern detected (advisory)'
+              : 'Classification mismatch detected',
+            message: mismatch.reason,
+            filePath: mismatch.filePaths[0],
+            referenceUrl: 'https://artificialintelligenceact.eu/article/6/',
+          })
+        }
       }
 
-      for (const result of allResults) {
+      for (const result of applicableResults) {
         if (result.status === 'fail') {
           findings.push({
             id: `${result.articleId}-fail-${systemDecl.id}`,
@@ -289,15 +341,33 @@ export async function scan(options: ScanOptions): Promise<ScanResult> {
         }
       }
 
+      for (const result of advisoryResults) {
+        if (result.status === 'fail' || result.status === 'warning') {
+          advisoryFindings.push({
+            id: `${result.articleId}-advisory-${systemDecl.id}`,
+            severity: 'info',
+            articleId: result.articleId,
+            systemId: systemDecl.id,
+            title: result.title,
+            message: result.detail,
+            suggestion: result.remediation,
+            filePath: result.filePaths?.[0],
+            referenceUrl: result.referenceUrl,
+          })
+        }
+      }
+
       systems.push({
         systemId: systemDecl.id,
         systemName: systemDecl.name,
         classification: systemDecl.classification,
         detections: systemDetections,
-        complianceResults: allResults,
+        complianceResults: applicableResults,
+        advisoryResults,
         classificationMismatches: classificationResult.mismatches,
         findings,
-        complianceScore: computeComplianceScore(allResults),
+        advisoryFindings,
+        complianceScore: computeComplianceScore(applicableResults),
       })
     }
   }

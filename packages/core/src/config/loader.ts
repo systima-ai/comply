@@ -54,6 +54,7 @@ function transformConfig(raw: RawComplyConfig, configDir: string): ComplyConfig 
     },
     classification: {
       riskLevel: sys.classification.risk_level,
+      domain: sys.classification.domain,
       annexIiiCategory: sys.classification.annex_iii_category,
       rationale: sys.classification.rationale,
     },

@@ -60,12 +60,25 @@ The scanner executes a five-stage pipeline:
 | `packages/core/src/classifier/` | Risk classification validation, Annex III domain detection |
 | `packages/core/src/tracer/` | Call-chain analysis (follows AI API return values through code), regulated decision sink detection |
 | `packages/core/src/obligations/` | Obligation check functions, one per EU AI Act article |
-| `packages/core/src/reporters/` | Output formatters: GitHub PR comment, GitLab MR note, JSON, SARIF, Markdown, SVG badge |
+| `packages/core/src/reporters/` | Output formatters: GitHub PR comment, GitLab MR note, JSON, SARIF, Markdown, PDF, SVG badge |
+| `packages/core/src/scaffold/` | Documentation template generator (`comply scaffold` command) |
+| `packages/core/src/doctor/` | Config validation (`comply doctor` command) |
 | `packages/core/src/diff/` | Baseline comparison engine |
 | `packages/core/src/config/` | `.systima.yml` Zod schema and loader |
 | `packages/core/src/knowledge/` | TypeScript loaders for the JSON knowledge bases |
 | `knowledge/frameworks/` | AI framework detection patterns (37+ frameworks) |
 | `knowledge/eu-ai-act/` | EU AI Act articles, Annex III categories, obligation mappings, deadlines, changelog |
+
+## Risk-tiered reporting
+
+The scanner splits findings into **applicable** and **advisory** based on the declared risk level and domain:
+
+- **Applicable obligations**: only articles that legally apply to the declared risk tier are counted in the compliance score and shown in the main obligation table. For limited-risk systems, this is Article 5 (prohibited practices) and Article 50 (transparency).
+- **Advisory findings**: call-chain analysis results (DB persistence, conditional branching, UI rendering, API calls) and high-risk-only obligation gaps (Articles 9-14) are shown in a collapsible advisory section, not as red alerts. They only become critical findings when the declared risk level is `high` or the declared `domain` is a regulated domain (e.g. `creditworthiness`, `employment`, `legal`).
+- **Domain field**: systems declare a `domain` in `.systima.yml` (e.g. `general_purpose`, `customer_support`, `creditworthiness`). Regulated domains (those mapping to Annex III categories) trigger high-severity treatment of call-chain findings. Non-regulated domains treat them as informational.
+- **Compliance score**: only counts obligations that are legally required for the declared risk level. A limited-risk system with both Article 5 and Article 50 passing scores 100%, regardless of whether high-risk-only documentation exists.
+
+When modifying the scanner orchestrator (`packages/core/src/scanner/index.ts`), maintain the separation between `complianceResults` (applicable) and `advisoryResults` (non-applicable) on `SystemScanResult`. Both must be populated; reporters decide how to display them.
 
 ## Testing
 
@@ -111,7 +124,9 @@ Add an entry to `knowledge/frameworks/ai-frameworks.json` with:
 ## Dependencies
 
 - `tree-sitter-python` is an **optional dependency** (native addon). The Python scanner falls back to regex-based detection if the WASM parser fails to initialise. Do not make it a hard dependency.
+- `pdfmake` is a runtime dependency for PDF report generation. It is marked as external in tsup (not bundled).
 - All other dependencies are pure JavaScript/TypeScript with no native compilation.
+- The GitHub Action (`action.yml` at repo root) is a self-contained ESM bundle with a `createRequire` banner for CJS compatibility. It is built via `pnpm --filter @systima/comply-action build` and the `dist/` must be committed to git. The `action.yml` at the repo root points to `packages/action/dist/index.js`.
 
 ## Constraints
 
