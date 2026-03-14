@@ -1,10 +1,6 @@
 import { readFile } from 'node:fs/promises'
-import { resolve, dirname } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import type { AnnexIIICategory } from '../types.js'
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
-const ANNEX_III_PATH = resolve(__dirname, '../../../../knowledge/eu-ai-act/annex-iii.json')
+import { resolveKnowledgePath } from './resolve-path.js'
 
 export interface AnnexIIISubcategory {
   ref: AnnexIIICategory
@@ -24,7 +20,8 @@ let cachedCategories: AnnexIIICategoryGroup[] | null = null
 export async function loadAnnexIIICategories(): Promise<AnnexIIICategoryGroup[]> {
   if (cachedCategories) return cachedCategories
 
-  const raw = await readFile(ANNEX_III_PATH, 'utf-8')
+  const annexPath = await resolveKnowledgePath('eu-ai-act/annex-iii.json')
+  const raw = await readFile(annexPath, 'utf-8')
   const data = JSON.parse(raw) as { categories: AnnexIIICategoryGroup[] }
   cachedCategories = data.categories
 

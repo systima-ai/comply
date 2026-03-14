@@ -42,6 +42,7 @@
     "knowledge"
   ],
   "scripts": {
+    "prebuild": "cp -r ../../knowledge ./knowledge",
     "build": "tsup",
     "dev": "tsup --watch",
     "test": "vitest run",

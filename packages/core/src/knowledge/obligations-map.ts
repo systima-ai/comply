@@ -1,11 +1,6 @@
 import { readFile } from 'node:fs/promises'
-import { resolve, dirname } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import type { ArticleId, RiskTier, ObligationDefinition } from '../types.js'
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
-const ARTICLES_PATH = resolve(__dirname, '../../../../knowledge/eu-ai-act/articles.json')
-const OBLIGATIONS_PATH = resolve(__dirname, '../../../../knowledge/eu-ai-act/obligations.json')
+import { resolveKnowledgePath } from './resolve-path.js'
 
 interface RawArticle {
   id: ArticleId
@@ -36,7 +31,8 @@ let cachedObligations: RawObligation[] | null = null
 async function loadArticles(): Promise<RawArticle[]> {
   if (cachedArticles) return cachedArticles
 
-  const raw = await readFile(ARTICLES_PATH, 'utf-8')
+  const articlesPath = await resolveKnowledgePath('eu-ai-act/articles.json')
+  const raw = await readFile(articlesPath, 'utf-8')
   const data = JSON.parse(raw) as { articles: RawArticle[] }
   cachedArticles = data.articles
 
@@ -46,7 +42,8 @@ async function loadArticles(): Promise<RawArticle[]> {
 async function loadObligations(): Promise<RawObligation[]> {
   if (cachedObligations) return cachedObligations
 
-  const raw = await readFile(OBLIGATIONS_PATH, 'utf-8')
+  const obligationsPath = await resolveKnowledgePath('eu-ai-act/obligations.json')
+  const raw = await readFile(obligationsPath, 'utf-8')
   const data = JSON.parse(raw) as { obligations: RawObligation[] }
   cachedObligations = data.obligations
 
