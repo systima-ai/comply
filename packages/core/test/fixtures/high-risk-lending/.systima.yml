@@ -1,0 +1,27 @@
+version: "1"
+
+organisation:
+  name: "FinanceCo"
+  eu_presence: true
+  operator_role: provider
+
+systems:
+  - id: loan-assessor
+    name: "Loan Assessment Engine"
+    description: "ML model scoring loan applications for creditworthiness"
+    scope:
+      paths: ["src/lending/**"]
+      exclude: ["src/lending/tests/**"]
+    classification:
+      risk_level: high
+      annex_iii_category: "5b"
+      rationale: "Automated credit scoring affecting natural persons"
+    regulations:
+      - eu_ai_act
+      - gdpr
+    documentation:
+      risk_management: docs/lending/risk-management.md
+      data_governance: docs/lending/data-governance.md
+      technical_docs: docs/lending/technical-documentation.md
+      transparency: docs/lending/transparency.md
+      human_oversight: docs/lending/human-oversight.md

@@ -1,0 +1,17 @@
+version: "1"
+
+organisation:
+  name: "Acme Corp"
+  eu_presence: true
+  operator_role: provider
+
+systems:
+  - id: support-chatbot
+    name: "Customer Support Chatbot"
+    scope:
+      paths: ["src/**"]
+    classification:
+      risk_level: limited
+      rationale: "AI chatbot interacting with users; transparency obligations"
+    documentation:
+      transparency: docs/transparency.md

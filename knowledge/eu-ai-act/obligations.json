@@ -1,0 +1,227 @@
+{
+  "obligations": [
+    {
+      "articleId": "art5",
+      "checks": [
+        {
+          "id": "art5-biometric-scraping",
+          "title": "No untargeted facial recognition scraping",
+          "description": "Detect web scraping or CCTV feed ingestion combined with face detection for building facial recognition databases.",
+          "phase": 1
+        },
+        {
+          "id": "art5-social-scoring",
+          "title": "No social scoring",
+          "description": "Detect systems that score individuals based on social behaviour for access decisions across unrelated contexts.",
+          "phase": 1
+        },
+        {
+          "id": "art5-emotion-workplace",
+          "title": "No workplace/education emotion recognition",
+          "description": "Detect emotion recognition or sentiment analysis deployed in employee monitoring or educational testing contexts.",
+          "phase": 1
+        },
+        {
+          "id": "art5-manipulation",
+          "title": "No subliminal manipulation",
+          "description": "Detect manipulative AI techniques targeting vulnerable individuals or exploiting age, disability, or socio-economic situation.",
+          "phase": 2
+        }
+      ]
+    },
+    {
+      "articleId": "art9",
+      "checks": [
+        {
+          "id": "art9-doc-exists",
+          "title": "Risk management documentation exists",
+          "description": "Declared risk_management document path exists and is non-empty.",
+          "phase": 1
+        },
+        {
+          "id": "art9-required-sections",
+          "title": "Risk management covers required sections",
+          "description": "Document contains sections for risk identification, estimation, evaluation, and mitigation.",
+          "phase": 1
+        },
+        {
+          "id": "art9-ci-gates",
+          "title": "CI/CD evaluation gates present",
+          "description": "CI/CD configuration includes evaluation gates that can block deployment based on model quality metrics.",
+          "phase": 2
+        }
+      ]
+    },
+    {
+      "articleId": "art10",
+      "checks": [
+        {
+          "id": "art10-doc-exists",
+          "title": "Data governance documentation exists",
+          "description": "Declared data_governance document path exists and is non-empty.",
+          "phase": 1
+        },
+        {
+          "id": "art10-data-references",
+          "title": "Documentation references actual data sources",
+          "description": "Data governance document references data sources or datasets found in the codebase.",
+          "phase": 2
+        },
+        {
+          "id": "art10-gdpr-crossref",
+          "title": "GDPR cross-reference present",
+          "description": "If regulations includes 'gdpr', data governance documentation addresses GDPR implications.",
+          "phase": 2
+        }
+      ]
+    },
+    {
+      "articleId": "art11",
+      "checks": [
+        {
+          "id": "art11-doc-exists",
+          "title": "Technical documentation exists",
+          "description": "Declared technical_docs document path exists and is non-empty.",
+          "phase": 1
+        },
+        {
+          "id": "art11-annex-iv-sections",
+          "title": "Documentation covers Annex IV requirements",
+          "description": "Technical documentation covers the nine Annex IV categories: general description, design specs, development process, monitoring, performance metrics, risk management, lifecycle changes, standards, and intended purpose.",
+          "phase": 1
+        }
+      ]
+    },
+    {
+      "articleId": "art12",
+      "checks": [
+        {
+          "id": "art12-logging-detected",
+          "title": "Logging infrastructure detected",
+          "description": "Structured logging or audit logging package detected in the codebase (e.g. @systima/aiact-audit-log, Winston with structured format, Pino).",
+          "phase": 1
+        },
+        {
+          "id": "art12-audit-log-integration",
+          "title": "@systima/aiact-audit-log integration",
+          "description": "The @systima/aiact-audit-log package is installed and configured with appropriate middleware on AI call paths.",
+          "phase": 3
+        },
+        {
+          "id": "art12-logging-coverage",
+          "title": "Logging coverage across AI call sites",
+          "description": "All detected AI API call sites have associated logging instrumentation.",
+          "phase": 3
+        }
+      ]
+    },
+    {
+      "articleId": "art13",
+      "checks": [
+        {
+          "id": "art13-doc-exists",
+          "title": "Transparency documentation exists",
+          "description": "Declared transparency document path exists and is non-empty.",
+          "phase": 1
+        },
+        {
+          "id": "art13-model-cards",
+          "title": "Model cards or capability documentation present",
+          "description": "Model card files or structured capability/limitation documentation found in the repository.",
+          "phase": 2
+        }
+      ]
+    },
+    {
+      "articleId": "art14",
+      "checks": [
+        {
+          "id": "art14-doc-exists",
+          "title": "Human oversight documentation exists",
+          "description": "Declared human_oversight document path exists and is non-empty.",
+          "phase": 1
+        },
+        {
+          "id": "art14-oversight-patterns",
+          "title": "Human oversight patterns in code",
+          "description": "Code paths include human-in-the-loop gates (approval steps, review queues, override mechanisms) before automated decisions take effect.",
+          "phase": 2
+        },
+        {
+          "id": "art14-kill-switch",
+          "title": "Kill-switch or halt mechanism",
+          "description": "System includes a mechanism for oversight persons to intervene in or halt the system's operation.",
+          "phase": 2
+        }
+      ]
+    },
+    {
+      "articleId": "art15",
+      "checks": [
+        {
+          "id": "art15-test-suites",
+          "title": "Test suites for AI components",
+          "description": "Test files or test directories covering AI component behaviour are present in the repository.",
+          "phase": 2
+        },
+        {
+          "id": "art15-input-validation",
+          "title": "Input validation on AI endpoints",
+          "description": "Input validation or sanitisation present before AI model invocation.",
+          "phase": 2
+        },
+        {
+          "id": "art15-monitoring",
+          "title": "Monitoring and alerting configuration",
+          "description": "Monitoring, drift detection, or alerting configuration present for AI components.",
+          "phase": 2
+        }
+      ]
+    },
+    {
+      "articleId": "art27",
+      "checks": [
+        {
+          "id": "art27-fria-exists",
+          "title": "FRIA documentation exists",
+          "description": "If operator_role is 'deployer' or 'both', declared FRIA document path exists and contains required sections per Article 27(1).",
+          "phase": 3
+        }
+      ]
+    },
+    {
+      "articleId": "art50",
+      "checks": [
+        {
+          "id": "art50-ai-disclosure",
+          "title": "AI interaction disclosure present",
+          "description": "User-facing code includes AI disclosure mechanisms for systems that interact directly with natural persons.",
+          "phase": 1
+        },
+        {
+          "id": "art50-content-marking",
+          "title": "AI-generated content marking",
+          "description": "AI-generated content output includes machine-readable provenance markers (C2PA, watermarking, metadata headers).",
+          "phase": 2
+        }
+      ]
+    },
+    {
+      "articleId": "art72",
+      "checks": [
+        {
+          "id": "art72-monitoring-doc",
+          "title": "Post-market monitoring documentation",
+          "description": "Declared post_market_monitoring document path exists and describes monitoring dimensions.",
+          "phase": 3
+        },
+        {
+          "id": "art72-monitoring-pipeline",
+          "title": "Monitoring pipeline present",
+          "description": "Drift detection, accuracy monitoring, or alerting pipelines configured for AI components.",
+          "phase": 3
+        }
+      ]
+    }
+  ]
+}

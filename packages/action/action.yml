@@ -1,0 +1,34 @@
+name: 'Systima Comply'
+description: 'EU AI Act compliance scanning for pull requests'
+author: 'Systima Ltd.'
+branding:
+  icon: 'shield'
+  color: 'blue'
+inputs:
+  config-path:
+    description: 'Path to .systima.yml (default: repo root)'
+    default: '.systima.yml'
+  scan-mode:
+    description: 'full (entire repo) or diff (changed files only)'
+    default: 'diff'
+  fail-on:
+    description: 'Fail the check on: none, warning, fail, critical'
+    default: 'critical'
+  output-format:
+    description: 'comment, json, sarif, or all'
+    default: 'comment'
+  baseline-path:
+    description: 'Path to baseline file for diff comparison'
+    default: '.systima-baseline.json'
+outputs:
+  compliance-score:
+    description: 'Fraction of applicable obligations met (0.0-1.0)'
+  risk-level:
+    description: 'Highest risk level across all declared systems'
+  findings-count:
+    description: 'Total number of findings'
+  classification-changed:
+    description: 'Whether any system classification changed'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

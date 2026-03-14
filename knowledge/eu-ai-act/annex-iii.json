@@ -1,0 +1,185 @@
+{
+  "categories": [
+    {
+      "number": 1,
+      "title": "Biometrics",
+      "condition": "Use must be permitted under relevant Union or national law",
+      "subcategories": [
+        {
+          "ref": "1a",
+          "description": "Remote biometric identification systems. Excludes biometric verification whose sole purpose is confirming a person is who they claim to be.",
+          "codeIndicators": ["face_recognition", "deepface", "insightface", "facial recognition", "biometric identification", "face matching", "SearchFacesByImage", "face embedding"]
+        },
+        {
+          "ref": "1b",
+          "description": "Biometric categorisation systems that categorise by sensitive or protected attributes or characteristics based on inference of those attributes.",
+          "codeIndicators": ["demographic classification", "predict_ethnicity", "predict_gender", "age estimation", "biometric categorisation", "facial attribute analysis"]
+        },
+        {
+          "ref": "1c",
+          "description": "Emotion recognition systems.",
+          "codeIndicators": ["emotion recognition", "sentiment from face", "facial expression analysis", "affectiva", "fer", "emotion detection", "voice sentiment"]
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Critical infrastructure",
+      "condition": null,
+      "subcategories": [
+        {
+          "ref": "2",
+          "description": "AI used as safety components in the management and operation of critical digital infrastructure, road traffic, or supply of water, gas, heating, or electricity.",
+          "codeIndicators": ["SCADA", "ICS", "Modbus", "DNP3", "traffic signal", "smart grid", "power grid", "water treatment", "energy dispatch", "critical infrastructure"]
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Education and vocational training",
+      "condition": null,
+      "subcategories": [
+        {
+          "ref": "3a",
+          "description": "Determining access or admission or assigning persons to educational and vocational training institutions at all levels.",
+          "codeIndicators": ["admissions", "student placement", "university admission", "school assignment", "applicant ranking", "enrollment scoring"]
+        },
+        {
+          "ref": "3b",
+          "description": "Evaluating learning outcomes, including when used to steer the learning process.",
+          "codeIndicators": ["essay grading", "automated scoring", "adaptive learning", "exam scoring", "student assessment", "grade prediction"]
+        },
+        {
+          "ref": "3c",
+          "description": "Assessing the appropriate level of education an individual will receive or can access.",
+          "codeIndicators": ["student streaming", "ability grouping", "education level assessment", "learning ability", "curriculum tier"]
+        },
+        {
+          "ref": "3d",
+          "description": "Monitoring and detecting prohibited behaviour of students during tests.",
+          "codeIndicators": ["proctoring", "exam monitoring", "plagiarism detection", "gaze tracking", "keystroke dynamics", "browser lockdown"]
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Employment, workers management, and access to self-employment",
+      "condition": null,
+      "subcategories": [
+        {
+          "ref": "4a",
+          "description": "Recruitment or selection: placing targeted job ads, analysing or filtering applications, evaluating candidates.",
+          "codeIndicators": ["CV screening", "resume parsing", "candidate ranking", "job matching", "applicant scoring", "recruitment", "hiring", "interview analysis", "HireVue"]
+        },
+        {
+          "ref": "4b",
+          "description": "Decisions affecting terms of work: promotion, termination, task allocation based on individual behaviour or traits, monitoring and evaluating performance.",
+          "codeIndicators": ["performance scoring", "employee monitoring", "productivity tracking", "task allocation", "promotion scoring", "termination risk", "workforce analytics"]
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Access to and enjoyment of essential private and public services",
+      "condition": null,
+      "subcategories": [
+        {
+          "ref": "5a",
+          "description": "Evaluating eligibility for essential public assistance benefits and services, or granting, reducing, revoking, or reclaiming such benefits.",
+          "codeIndicators": ["benefit eligibility", "welfare scoring", "social benefit", "public assistance", "benefit fraud", "entitlement assessment"]
+        },
+        {
+          "ref": "5b",
+          "description": "Evaluating creditworthiness or establishing credit scores of natural persons. Excludes AI used solely for detecting financial fraud.",
+          "codeIndicators": ["credit scoring", "creditworthiness", "lending decision", "loan assessment", "credit risk", "underwriting", "credit bureau", "FICO"]
+        },
+        {
+          "ref": "5c",
+          "description": "Risk assessment and pricing for natural persons in life and health insurance.",
+          "codeIndicators": ["insurance risk", "actuarial", "health risk scoring", "premium calculation", "mortality prediction", "insurance underwriting", "life insurance pricing"]
+        },
+        {
+          "ref": "5d",
+          "description": "Evaluating and classifying emergency calls or dispatching and prioritising emergency first response services; emergency healthcare patient triage.",
+          "codeIndicators": ["emergency dispatch", "triage", "999", "112", "ambulance dispatch", "emergency classification", "patient triage", "severity scoring"]
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Law enforcement",
+      "condition": "Use must be permitted under relevant Union or national law",
+      "subcategories": [
+        {
+          "ref": "6a",
+          "description": "Assessing the risk of a natural person becoming a victim of criminal offences.",
+          "codeIndicators": ["victimisation risk", "crime victim prediction", "domestic violence risk"]
+        },
+        {
+          "ref": "6b",
+          "description": "Polygraphs or similar tools used by or for law enforcement.",
+          "codeIndicators": ["lie detection", "polygraph", "deception detection", "voice stress analysis"]
+        },
+        {
+          "ref": "6c",
+          "description": "Evaluating the reliability of evidence during investigation or prosecution.",
+          "codeIndicators": ["evidence reliability", "forensic analysis", "document authenticity", "deepfake detection for evidence"]
+        },
+        {
+          "ref": "6d",
+          "description": "Assessing risk of offending or re-offending; assessing personality traits or past criminal behaviour.",
+          "codeIndicators": ["recidivism", "reoffending prediction", "COMPAS", "criminal risk assessment", "pretrial risk"]
+        },
+        {
+          "ref": "6e",
+          "description": "Profiling of natural persons in detection, investigation, or prosecution of criminal offences.",
+          "codeIndicators": ["predictive policing", "suspect profiling", "criminal profiling", "person of interest scoring"]
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Migration, asylum, and border control management",
+      "condition": "Use must be permitted under relevant Union or national law",
+      "subcategories": [
+        {
+          "ref": "7a",
+          "description": "Polygraphs or similar tools used by competent public authorities in migration and border context.",
+          "codeIndicators": ["border lie detection", "immigration polygraph"]
+        },
+        {
+          "ref": "7b",
+          "description": "Assessing security risk, irregular migration risk, or health risk posed by persons entering or having entered a Member State.",
+          "codeIndicators": ["border risk assessment", "immigration risk scoring", "traveller risk", "health screening border"]
+        },
+        {
+          "ref": "7c",
+          "description": "Assisting examination of asylum, visa, or residence permit applications.",
+          "codeIndicators": ["asylum processing", "visa scoring", "residence permit", "immigration application", "asylum claim verification"]
+        },
+        {
+          "ref": "7d",
+          "description": "Detecting, recognising, or identifying natural persons in migration, asylum, and border control context. Excludes verification of travel documents.",
+          "codeIndicators": ["EURODAC", "SIS II", "VIS", "border biometric", "immigration biometric matching"]
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Administration of justice and democratic processes",
+      "condition": null,
+      "subcategories": [
+        {
+          "ref": "8a",
+          "description": "Assisting judicial authorities in researching and interpreting facts and law, applying law to facts; similar use in alternative dispute resolution.",
+          "codeIndicators": ["legal research AI", "case prediction", "sentencing suggestion", "judicial assistant", "legal outcome prediction", "ADR automation"]
+        },
+        {
+          "ref": "8b",
+          "description": "Influencing the outcome of an election or referendum, or the voting behaviour of persons. Excludes tools for organising and optimising political campaigns from an administrative or logistical point of view.",
+          "codeIndicators": ["voter targeting", "election influence", "political persuasion", "voter microtargeting", "political ad optimisation"]
+        }
+      ]
+    }
+  ]
+}

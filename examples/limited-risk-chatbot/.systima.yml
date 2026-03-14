@@ -1,0 +1,18 @@
+version: "1"
+
+organisation:
+  name: "SupportCo"
+  eu_presence: true
+  operator_role: provider
+
+systems:
+  - id: support-chatbot
+    name: "Customer Support Chatbot"
+    scope:
+      paths:
+        - src/chatbot/**
+    classification:
+      risk_level: limited
+      rationale: "AI chatbot interacting with users; transparency obligations apply"
+    documentation:
+      transparency: docs/chatbot/ai-disclosure.md
