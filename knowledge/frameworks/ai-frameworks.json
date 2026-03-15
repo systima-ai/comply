@@ -593,6 +593,22 @@
       "description": "Hugging Face Hub client for model/dataset management"
     },
     {
+      "id": "minimax",
+      "name": "MiniMax",
+      "category": "llm_provider",
+      "riskSignals": ["limited"],
+      "python": {
+        "imports": ["minimax", "from minimax"],
+        "packages": ["minimax-python"]
+      },
+      "javascript": {
+        "imports": ["vercel-minimax-ai-provider"],
+        "packages": ["vercel-minimax-ai-provider"]
+      },
+      "envPatterns": ["MINIMAX_API_KEY", "MINIMAX_GROUP_ID"],
+      "description": "MiniMax AI API client (OpenAI-compatible LLM provider)"
+    },
+    {
       "id": "aws-bedrock",
       "name": "AWS Bedrock",
       "category": "llm_provider",

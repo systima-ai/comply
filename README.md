@@ -8,7 +8,7 @@ Systima Comply analyses your codebase for AI framework usage, validates your ris
 
 ## Features
 
-- **AI framework detection**: 37+ frameworks across Python and TypeScript/JavaScript (OpenAI, Anthropic, LangChain, scikit-learn, face_recognition, and more)
+- **AI framework detection**: 40+ frameworks across Python and TypeScript/JavaScript (OpenAI, Anthropic, LangChain, scikit-learn, face_recognition, and more)
 - **Risk classification validation**: Validates declared risk levels against detected frameworks; flags mismatches (e.g. biometric processing in a "limited-risk" system)
 - **Obligation compliance checking**: Per-article checks for Articles 5, 9, 10, 11, 12, 13, 14, 27, and 50
 - **Call-chain analysis**: Traces AI API call return values through your code to detect regulated decision patterns
@@ -227,11 +227,11 @@ const json = formatJsonReport(result)
 
 ## Detected Frameworks
 
-Comply detects 37+ AI/ML frameworks across Python and TypeScript/JavaScript:
+Comply detects 40+ AI/ML frameworks across Python and TypeScript/JavaScript:
 
 | Category | Frameworks |
 |----------|-----------|
-| LLM Providers | OpenAI, Anthropic, Google Generative AI, Cohere, Mistral AI, Together AI, Groq, Replicate, AWS Bedrock, Azure OpenAI |
+| LLM Providers | OpenAI, Anthropic, Google Generative AI, Cohere, Mistral AI, Together AI, Groq, Replicate, MiniMax, AWS Bedrock, Azure OpenAI |
 | ML Frameworks | TensorFlow, PyTorch, JAX, scikit-learn, XGBoost, LightGBM, CatBoost |
 | Agent Frameworks | LangChain, LlamaIndex, AutoGen, CrewAI, Semantic Kernel, Haystack, DSPy, Mastra |
 | Computer Vision | face_recognition, DeepFace, InsightFace, OpenCV DNN, MediaPipe |
