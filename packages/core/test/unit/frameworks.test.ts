@@ -43,6 +43,28 @@ describe('framework knowledge base', () => {
     expect(fw!.id).toBe('langchain')
   })
 
+  it('finds MiniMax by Python package name', async () => {
+    const frameworks = await loadFrameworks()
+    const fw = findFrameworkByPackage(frameworks, 'minimax-python', 'python')
+    expect(fw).toBeDefined()
+    expect(fw!.id).toBe('minimax')
+    expect(fw!.category).toBe('llm_provider')
+  })
+
+  it('finds MiniMax by env pattern', async () => {
+    const frameworks = await loadFrameworks()
+    const fw = findFrameworkByEnvPattern(frameworks, 'MINIMAX_API_KEY')
+    expect(fw).toBeDefined()
+    expect(fw!.id).toBe('minimax')
+  })
+
+  it('finds MiniMax by JS package name', async () => {
+    const frameworks = await loadFrameworks()
+    const fw = findFrameworkByPackage(frameworks, 'vercel-minimax-ai-provider', 'javascript')
+    expect(fw).toBeDefined()
+    expect(fw!.id).toBe('minimax')
+  })
+
   it('returns undefined for unknown packages', async () => {
     const frameworks = await loadFrameworks()
     const fw = findFrameworkByPackage(frameworks, 'express', 'javascript')
